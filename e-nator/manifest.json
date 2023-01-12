@@ -1,0 +1,24 @@
+{
+    "manifest_version": 3,
+    "name": "e-nator!",
+    "description": "e-nator",
+    "version": "1.0",
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": "icon.png"
+    },
+    "options_page": "options/options.html",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*/*"
+            ],
+            "js": [
+                "content-scripts/replace.js"
+            ]
+        }
+    ]
+}

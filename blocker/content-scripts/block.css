@@ -48,8 +48,7 @@ button {
 
 
 body {
-  cursor: url(/images/wave1.png), wait;
-  /*cursor:wait;*/
+  cursor: url("/images/wave1.png"), wait;
 }
 
 .cursortest {

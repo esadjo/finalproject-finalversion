@@ -1,5 +1,6 @@
 const checkbox = document.getElementById("enable");
 const addBlockButton = document.getElementById("add-block");
+//Need to create const for the cursor buttons -- need to add ids to the buttons in pop-up html
 
 // Add event listeners to the checkbox and button
 checkbox.addEventListener("change", (e) => updateContentScript(false));
@@ -17,3 +18,6 @@ async function updateContentScript(addBlock) {
   // You can do something with response from the content script here
   console.log(response);
 }
+
+
+

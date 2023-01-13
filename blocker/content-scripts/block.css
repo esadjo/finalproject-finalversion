@@ -48,15 +48,14 @@ button {
 
 
 body {
-  /*cursor: url('/images/pointer.png');*/ /*accessing the proper folder?*/
-  cursor:wait;
+  cursor: url('https://images.unsplash.com/photo-1600493572882-f098876ce680?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80'), auto; /*('/images/pointer.png');*/ /*accessing the proper folder?
+  /*cursor:wait;*/
 }
 
-.cursor {
+.cursortest {
   width: 20px; 
   height: 20px; 
   border: 1px solid red; 
   border-radius: 50%;
-  position: absolute; 
-
+  position: absolute;
 }

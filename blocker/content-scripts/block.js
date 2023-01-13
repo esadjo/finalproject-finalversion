@@ -72,7 +72,16 @@ chrome.runtime.onMessage.addListener((request) => {
 });
 
 // TESTING CURSOR STUFF!!!
+/*const cursor = document.querySelector('.cursortest', cursorfun);
+
+function cursorfun(cursor) {
+  document.addEventListener('mousemove', e => {
+    cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
+  })
+}*/
+
+/*TESTING
 const cursor = document.querySelector('.cursortest');
 document.addEventListener('mousemove', e => {
   cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
-})
+  */

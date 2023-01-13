@@ -7,10 +7,10 @@
         "default_popup": "popup/popup.html",
         "default_icon": "images/icon-32.png"
     },
-    "content_scripts": [
+    "content_scripts": [ /*any code want to run in the actual page, rather than the pop-up or exntension itself. Why need the send message to talk between this page and the code of the extension itself*/
         {
             "matches": [
-                "*://*/*"
+                "*://*/*" /*allows code to run on any site*/
             ],
             "js": [
                 "content-scripts/block.js"
@@ -20,4 +20,5 @@
             ]
         }
     ]
+    /* Give it a list of objects which contain rules for when run content scripts*/
 }

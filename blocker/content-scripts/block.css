@@ -45,3 +45,16 @@
 button {
   display: none;
 }
+
+body {
+  cursor: url('../images/pointer.png');
+}
+
+.cursor {
+  width: 20px; 
+  height: 20px; 
+  border: 1px solid white; 
+  border-radius: 50%;
+  position: absolute; 
+  
+}

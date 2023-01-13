@@ -7,8 +7,8 @@ body {
 
 .popup-title {
   font-weight: 900;
-  background-color: rgb(208, 58, 138);
-  color: white;
+  background-color: rgb(52, 102, 123);
+  color: rgb(255, 255, 255);
   width: 100%;
   padding: 5px;
 }
@@ -25,9 +25,39 @@ body {
 
 .popup-content {
   font-family: monospace;
-  padding: 5px;
+  padding: 50px;
 }
 
 button {
-  width: 100%;
+  background-color: #FFD766; 
+  border: none;
+  border-radius: 100%;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer; /*need to specify to the type*/
 }
+
+.button2 {
+  background-color: #fff3d2;
+}
+
+.hand {
+  width: 50px;
+  height: 50px;
+}
+
+body {
+  cursor: "👋", auto;
+}
+
+.spacer {
+  margin: 50px 0px 50px 0px;
+}
+
+
+

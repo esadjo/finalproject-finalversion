@@ -37,7 +37,7 @@ function doReplacement() {
 // This is a recursive function which traverses the DOM tree and examines
 // the type of each node. If it is a text node, it calls our handleText
 // function to replace the text.
-function walkNodes(node, replacements) {
+function walkNodes(node, replacements) { /*function that calls itself*/
   let child, next;
 
   // We use a switch statement to decide what to do based on the node type.

@@ -20,10 +20,6 @@ function addBlock() {
   deleteButton.innerText = "remove";
   deleteButton.addEventListener("click", deleteParent);
 
-
-  //Testing 
-  const dragButton = document.createElement("button");
-
   // Add the delete button and drag handle to the block
   block.appendChild(deleteButton);
   block.appendChild(dragButton);
@@ -74,18 +70,3 @@ chrome.runtime.onMessage.addListener((request) => {
   if (request["addBlock"]) addBlock();
   renderBlocks();
 });
-
-// TESTING CURSOR STUFF!!!
-/*const cursor = document.querySelector('.cursortest', cursorfun);
-
-function cursorfun(cursor) {
-  document.addEventListener('mousemove', e => {
-    cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
-  })
-}*/
-
-/*TESTING
-const cursor = document.querySelector('.cursortest');
-document.addEventListener('mousemove', e => {
-  cursor.setAttribute("style", "top: "+(e.pageY - 10)+"px; left: "+(e.pageX - 10)+"px;")
-  */

@@ -11,7 +11,7 @@ function addBlock() {
   block.classList.add("blocker-block");
 
   // Create the drag handle
-  const dragButton = document.createElement("button");
+ /* const dragButton = document.createElement("button");
   dragButton.innerText = "drag 🐱";
   makeDraggable(dragButton);
 
@@ -22,23 +22,21 @@ function addBlock() {
 
   // Add the delete button and drag handle to the block
   block.appendChild(deleteButton);
-  block.appendChild(dragButton);
+  block.appendChild(dragButton);*/
 
   // Add the block to the block container
+
+  //makeDraggable();
   blockContainer.appendChild(block);
   //Testing 
   const myImage = new Image(100, 100);
-  myImage.src = 'https://www.emoji.co.uk/files/apple-emojis/animals-nature-ios/212-hamster-face.png?w=10';
+  myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/blocker/images/wave1.png?raw=true';
   block.appendChild(myImage);
   
 }
 
-function deleteParent(e) {
-  e.target.parentNode.remove();
-}
 
-function makeDraggable(el) {
-  el.addEventListener("mousedown", function (e) {
+function makeDraggable() {
     const parentBlock = el.parentNode;
     var offsetX =
       e.clientX - parseInt(window.getComputedStyle(parentBlock).left);
@@ -57,7 +55,6 @@ function makeDraggable(el) {
 
     window.addEventListener("mousemove", mouseMoveHandler);
     window.addEventListener("mouseup", reset);
-  });
 }
 
 function renderBlocks() {

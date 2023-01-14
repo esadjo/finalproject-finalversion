@@ -8,7 +8,7 @@
   justify-content: center;
 
   /* Specify initial position and dimensions */
-  position: absolute;
+  position: fixed;
   top: 90%;
   left: 10%;
   /*top: calc(50vh - 150px);
@@ -17,7 +17,7 @@
   width: 100px;
 
   /* Set color to inherit from container */
-  background-color: inherit;
+  
 
   /* Make it resizable */
   resize: both;

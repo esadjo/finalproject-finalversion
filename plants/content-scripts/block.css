@@ -9,8 +9,8 @@
 
   /* Specify initial position and dimensions */
   position: fixed;
-  top: 90%;
-  left: 10%;
+  top: calc(100% - 100px);
+  left: 50px;
   /*top: calc(50vh - 150px);
   left: calc(50vw - 150px);*/
   height: 100px;
@@ -20,8 +20,8 @@
   
 
   /* Make it resizable */
-  resize: both;
-  overflow: auto;
+  /*resize: both;
+  overflow: auto;*/
 }
 
 .blocker-block:hover * {
@@ -40,7 +40,7 @@
   z-index: 1000000000;
 
   /* Inherit background color so blocks can also inherit */
-  background-color: inherit;
+  /*background-color: inherit;*/
 }
 
 button {
@@ -49,7 +49,7 @@ button {
 
 /* Say didn't have a chance to ask during office hours -- but wondering if know why image have for cursor url is not loading -- uses the second option of wait -- does work when i test in in a random css and html file locally*/
 body {
-  cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/blocker/images/wave1.png?raw=true"), wait;
+  cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/water.png?raw=true"), wait;
 }
 
 .cursortest {

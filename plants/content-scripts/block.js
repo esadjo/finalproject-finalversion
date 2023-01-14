@@ -26,7 +26,7 @@ function deleteParent(e) {
   e.target.parentNode.remove();
 }
 
-function makeDraggable(el) {
+/* function makeDraggable(el) {
   el.addEventListener("mousedown", function (e) {
     const parentBlock = el.parentNode;
     var offsetX =
@@ -47,7 +47,7 @@ function makeDraggable(el) {
     window.addEventListener("mousemove", mouseMoveHandler);
     window.addEventListener("mouseup", reset);
   });
-}
+} */
 
 function renderBlocks() {
   if (showBlocks) {

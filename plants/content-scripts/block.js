@@ -17,7 +17,7 @@ function addBlock() {
   blockContainer.appendChild(block);
   //Testing 
   const myImage = new Image(100, 100);
-  myImage.src = 'https://www.emoji.co.uk/files/apple-emojis/animals-nature-ios/212-hamster-face.png?w=10';
+  myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/sprout.png?raw=true';
   block.appendChild(myImage);
   
 }

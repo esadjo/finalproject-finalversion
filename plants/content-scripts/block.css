@@ -1,0 +1,61 @@
+
+
+.blocker-block {
+  /* Positioning for children */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* Specify initial position and dimensions */
+  position: absolute;
+  top: -10%;
+  left: 10%;
+  /*top: calc(50vh - 150px);
+  left: calc(50vw - 150px);*/
+  height: 100px;
+  width: 100px;
+
+  /* Set color to inherit from container */
+  background-color: inherit;
+
+  /* Make it resizable */
+  resize: both;
+  overflow: auto;
+}
+
+.blocker-block:hover * {
+  display: block;
+}
+
+
+.invisible {
+  display: none;
+}
+
+.blockContainer {
+  /* Position */
+  top: 0;
+  position: fixed;
+  z-index: 1000000000;
+
+  /* Inherit background color so blocks can also inherit */
+  background-color: inherit;
+}
+
+button {
+  display: none;
+}
+
+/* Say didn't have a chance to ask during office hours -- but wondering if know why image have for cursor url is not loading -- uses the second option of wait -- does work when i test in in a random css and html file locally*/
+body {
+  cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/blocker/images/wave1.png?raw=true"), wait;
+}
+
+.cursortest {
+  width: 20px; 
+  height: 20px; 
+  border: 1px solid red; 
+  border-radius: 50%;
+  position: absolute;
+}

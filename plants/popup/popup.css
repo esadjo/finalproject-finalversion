@@ -1,0 +1,66 @@
+body {
+  width: max-content;
+  margin: 0;
+  font-size: 1rem;
+  user-select: none;
+}
+
+.popup-title {
+  font-weight: 900;
+  background-color: rgb(52, 102, 123);
+  color: rgb(255, 255, 255);
+  width: 100%;
+  padding: 5px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.2rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-left: 1rem;
+}
+
+.popup-content {
+  font-family: monospace;
+  padding: 50px;
+}
+
+button {
+  background-color: #FFD766; 
+  border: none;
+  border-radius: 100%;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 2px;
+  cursor: pointer; /*need to specify to the type*/
+}
+
+button:hover {
+  opacity: 50%;
+}
+
+.button2 {
+  background-color: #fff3d2;
+}
+
+
+
+.hand {
+  width: 40px;
+  height: 40px;
+}
+
+/*body {
+  cursor: "👋", auto;
+}*/
+
+.spacer {
+  margin: 50px 0px 50px 0px;
+}

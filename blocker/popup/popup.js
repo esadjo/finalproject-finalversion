@@ -14,7 +14,7 @@ addWave.addEventListener("click", (e) => updateCursor('pointer'));
 
 function updateCursor(icon) {
   if icon == 'wave' {
-    location = ""
+    location = "";
   }
 }
 

@@ -12,7 +12,7 @@ function addBlock() {
 
   // Create the drag handle
   const dragButton = document.createElement("button");
-  dragButton.innerText = "drag";
+  dragButton.innerText = "drag 🐱";
   makeDraggable(dragButton);
 
   // Create the delete button
@@ -26,6 +26,11 @@ function addBlock() {
 
   // Add the block to the block container
   blockContainer.appendChild(block);
+  //Testing 
+  const myImage = new Image(100, 100);
+  myImage.src = 'https://www.emoji.co.uk/files/apple-emojis/animals-nature-ios/212-hamster-face.png?w=10';
+  block.appendChild(myImage);
+  
 }
 
 function deleteParent(e) {

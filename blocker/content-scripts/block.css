@@ -48,7 +48,7 @@ button {
 
 /* Say didn't have a chance to ask during office hours -- but wondering if know why image have for cursor url is not loading -- uses the second option of wait -- does work when i test in in a random css and html file locally*/
 body {
-  cursor: url("/images/wave1.png"), wait;
+  cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/blocker/images/wave1.png?raw=true"), wait;
 }
 
 .cursortest {

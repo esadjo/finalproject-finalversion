@@ -7,7 +7,7 @@ const blockContainer = document.createElement("div");
 blockContainer.classList.add("blockContainer");
 document.body.appendChild(blockContainer);
 
-function addBlock() {
+function addBlock(name) {
   // Create a div for the block
   const block = document.createElement("div");
   block.classList.add("blocker-block");
@@ -17,7 +17,13 @@ function addBlock() {
   blockContainer.appendChild(block);
   //Testing 
   const myImage = new Image(100, 100);
-  myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/sprout.png?raw=true';
+  if (name == "sprout") {
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/sprout.png?raw=true';
+  } else if (name == "herb") {
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/herb.png?raw=true';
+  } else if (name == "clover") {
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/clover.png?raw=true';
+  }
   block.appendChild(myImage);
   
 }
@@ -61,7 +67,8 @@ function renderBlocks() {
 // Add a message listener that sets the value of "replace"
 chrome.runtime.onMessage.addListener((request) => {
   showBlocks = request["enable"];
-  if (request["addBlock"]) addBlock();
+  dispType = request["type"]; //TESTING // specify plant
+  if (request["addBlock"]) addBlock(dispType);
   renderBlocks();
 });
 Footer

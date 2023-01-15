@@ -7,9 +7,19 @@ const blockContainer = document.createElement("div");
 blockContainer.classList.add("blockContainer");
 document.body.appendChild(blockContainer);
 
-function addBlock(name) {
+// Based on https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
+function clear(element) {
+  var div = document.getElementById(element);
+  while(div.firstChild) {
+      div.removeChild(div.firstChild);
+  }
+}
+
+
+
+function addBlock(name, block) {
   // Create a div for the block
-  const block = document.createElement("div");
+  // block.remove();
   block.classList.add("blocker-block");
 
 
@@ -63,12 +73,20 @@ function renderBlocks() {
   }
 }
 
+const ultimateBlock = document.createElement("div");
+
 // COPY THIS CODE!!
 // Add a message listener that sets the value of "replace"
 chrome.runtime.onMessage.addListener((request) => {
   showBlocks = request["enable"];
   dispType = request["type"]; //TESTING // specify plant
-  if (request["addBlock"]) addBlock(dispType);
+  if (request["addBlock"]) {
+    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
+    while (ultimateBlock.hasChildNodes()) { 
+      ultimateBlock.removeChild(ultimateBlock.firstChild);
+    } 
+    addBlock(dispType, ultimateBlock);
+  }
   renderBlocks();
 });
 Footer

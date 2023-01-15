@@ -46,6 +46,10 @@ button:hover {
   opacity: 50%;
 }
 
+/*button:active {
+  background-color: #244e12; 
+}*/
+
 .button2 {
   background-color: #D7F2B2;
   border-radius: 100%;
@@ -58,9 +62,6 @@ button:hover {
   height: 40px;
 }
 
-/*body {
-  cursor: "👋", auto;
-}*/
 
 .spacer {
   margin: 50px 0px 50px 0px;

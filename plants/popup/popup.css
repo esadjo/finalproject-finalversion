@@ -1,19 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik');
+
 body {
   width: max-content;
   margin: 0;
+  font-family: 'Rubik', sans-serif;
   font-size: 1rem;
   user-select: none;
 }
 
+h2 {
+  font-weight: bold;
+}
+
+h3 {
+  font-weight: 300;
+  color: #404040;
+}
+
 .popup-title {
   font-weight: 900;
-  background-color: rgb(52, 102, 123);
+  background-color: #3D7F20;
   color: rgb(255, 255, 255);
   width: 100%;
-  padding: 5px;
+  padding:6px;
 }
 
 .checkbox-container {
+  font-family: 'Rubik', sans-serif;
   display: flex;
   align-items: center;
   margin-bottom: 0.2rem;
@@ -24,8 +37,8 @@ body {
 }
 
 .popup-content {
-  font-family: monospace;
-  padding: 50px;
+  font-family: 'Rubik', sans-serif;
+  padding: 30px;
 }
 
 button {
@@ -43,7 +56,7 @@ button {
 }
 
 button:hover {
-  opacity: 50%;
+  opacity: 30%;
 }
 
 /*button:active {
@@ -51,13 +64,13 @@ button:hover {
 }*/
 
 .button2 {
-  background-color: #D7F2B2;
+  background-color: #FFFFFF;
   border-radius: 100%;
 }
 
 
 
-.hand {
+.plant {
   width: 40px;
   height: 40px;
 }
@@ -65,4 +78,72 @@ button:hover {
 
 .spacer {
   margin: 50px 0px 50px 0px;
+}
+
+.spacer-sml {
+  margin: 30px 0px 30px 0px;
+}
+
+/* Code for slider based on w3school */ 
+/* Code for the switch (toggle background portion) dimensions and positioning */
+.switch {
+  position: absolute;
+  left: 50%;
+  display: inline-block;
+  width: 55px;
+  height: 29px;
+}
+
+/* Hide the default HTML checkbox by reducing size and opacity */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Code for the slider within the toggle*/
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 29px;
+  background-color: #ccc;
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+
+/* Disabled slider state */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 19px;
+  width: 19px;
+  left: 4px;
+  bottom: 4px;
+  border-radius: 29px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #3D7F20;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #3D7F20;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+
+.spacer-horiz {
+  margin: 0px 30px 0px 30px;
 }

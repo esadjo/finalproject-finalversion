@@ -6,7 +6,7 @@ const checkbox = document.getElementById("enable");
 checkbox.addEventListener("change", (e) => updateContentScript(false, "no"));
 //addBlockButton.addEventListener("click", (e) => updateContentScript(true));
 
-function updateButtonColor(sprout, herb, clover, v1, v2, v3) { //FIGURE OUT HOW TO UPDATE BACKGROUND COLOR BASED ON WHICH ONE SELECTED MOST RECENTLY -- RIGHT NOW -- JUST SHOWING FOR CLOVER BECAUSE THINK OF ORDER OF CLICK BUTTON EVENT LISTENERS BELOW
+function updateButtonColor(sprout, herb, clover, v1, v2, v3) { // Updating button background colors of plants based on which one selected
   sprout.style.backgroundColor = v1;
   herb.style.backgroundColor = v2;
   clover.style.backgroundColor = v3;
@@ -16,15 +16,23 @@ const addSprout = document.getElementById("sprout");
 const addHerb = document.getElementById("herb");
 const addClover = document.getElementById("clover");
 
-addSprout.addEventListener("click", (e) => updateContentScript(true, "sprout"), updateButtonColor(addSprout, addHerb, addClover, "#3D7F20", "#D7F2B2", "#D7F2B2"));
-addHerb.addEventListener("click", (e) => updateContentScript(true, "herb"), updateButtonColor(addSprout, addHerb, addClover, "#D7F2B2", "#3D7F20", "#D7F2B2"));
-addClover.addEventListener("click", (e) => updateContentScript(true, "clover"), updateButtonColor(addSprout, addHerb, addClover, "#D7F2B2", "#D7F2B2", "#3D7F20"));
+addSprout.addEventListener("click", (e) => updateContentScript(true, "sprout")); 
+addHerb.addEventListener("click", (e) => updateContentScript(true, "herb")); 
+addClover.addEventListener("click", (e) => updateContentScript(true, "clover")); 
 
 
 
 async function updateContentScript(addBlock, name) {
   // Sends a message to the content script with an object that has the
   // current value of the checkbox and a boolean (whether to add a block)
+  if (name == "sprout") {
+    updateButtonColor(addSprout, addHerb, addClover, "#D2F4A1", "#FFFFFF", "#FFFFFF");
+  } else if (name == "herb") {
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#D2F4A1", "#FFFFFF");
+  } else if (name == "clover") {
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D2F4A1");
+  }
+
   const message = { enable: checkbox.checked, addBlock: addBlock, type: name };
   const [tab] = await chrome.tabs.query({
     active: true,

@@ -5,14 +5,14 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
-    <div class="popup-title">Custom Cursor</div>
+    <div class="popup-title">Web Browser Plant</div>
     <div class="popup-content">
       
-      <h2>Cursor Type</h2>
+      <h2><b>Select a plant</b></h2>
 
       <button class="button2" id="sprout">
         <img
-          class="hand"
+          class="plant"
           src="/images/sprout.png"
           alt=".."
         />
@@ -20,7 +20,7 @@
 
         <button class="button2" id="herb">
           <img
-            class="hand"
+            class="plant"
             src="/images/herb.png"
             alt=".."
           />
@@ -28,7 +28,7 @@
 
         <button class="button2" id="clover">
           <img
-            class="hand"
+            class="plant"
             src="/images/clover.png"
             alt=".."
           />
@@ -36,14 +36,16 @@
 
         <p><br></p>
 
-      <div class="spacer">
+      <div class="spacer-sml">
       </div>
 
-      <div class="checkbox-container">
-        <label for="enable">enable blocks</label>
-        <input id="enable" type="checkbox" checked />
+
+      <div class="checkbox-container">Grow plants
+        <label class="switch" for="enable">
+          <input id="enable" type="checkbox" checked>
+          <span class="slider round"></span>
+        </label>
       </div>
-      <!--<button id="add-block">add block</button>-->
 
 
       
@@ -51,7 +53,6 @@
 
 
     </div>
-    <!--<p>👋</p>-->
     <script src="popup.js"></script>
   </body>
 </html>

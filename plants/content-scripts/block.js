@@ -89,4 +89,4 @@ chrome.runtime.onMessage.addListener((request) => {
   }
   renderBlocks();
 });
-Footer
+

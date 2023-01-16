@@ -47,10 +47,10 @@ button {
   display: none;
 }
 
-/* Say didn't have a chance to ask during office hours -- but wondering if know why image have for cursor url is not loading -- uses the second option of wait -- does work when i test in in a random css and html file locally*/
-body {
+/* To change the cursor*/
+/*body {
   cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/recycle.png?raw=true"), wait;
-}
+}*/
 
 .cursortest {
   width: 20px; 

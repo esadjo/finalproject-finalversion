@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
-    "name": "plants!",
-    "description": "custom cursors with hand emojis!",
+    "name": "Web Plants",
+    "description": "Plant a plant in the lower left corner of your browser to keep the environment close to home in your mind",
     "version": "1.0",
     "action": {
         "default_popup": "popup/popup.html",

@@ -25,7 +25,7 @@ function addBlock(name, block) {
 
   // Add the block to the block container
   blockContainer.appendChild(block);
-  //Testing 
+  
   const myImage = new Image(100, 100);
   if (name == "sprout") {
     myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/sprout.png?raw=true';
@@ -36,37 +36,11 @@ function addBlock(name, block) {
   }
   
   block.appendChild(myImage);
-  //myImage.style.cssText += "transition: transform 30.5s ease-in-out; transform: scale(1.2,1.2);";
-  //myImage.style += "transition: transform 20.5s ease-in-out; transform: scale(1.2,1.2);";
-  
 }
 
 function deleteParent(e) {
   e.target.parentNode.remove();
 }
-
-/* function makeDraggable(el) {
-  el.addEventListener("mousedown", function (e) {
-    const parentBlock = el.parentNode;
-    var offsetX =
-      e.clientX - parseInt(window.getComputedStyle(parentBlock).left);
-    var offsetY =
-      e.clientY - parseInt(window.getComputedStyle(parentBlock).top);
-
-    function mouseMoveHandler(e) {
-      parentBlock.style.top = e.clientY - offsetY + "px";
-      parentBlock.style.left = e.clientX - offsetX + "px";
-    }
-
-    function reset() {
-      window.removeEventListener("mousemove", mouseMoveHandler);
-      window.removeEventListener("mouseup", reset);
-    }
-
-    window.addEventListener("mousemove", mouseMoveHandler);
-    window.addEventListener("mouseup", reset);
-  });
-} */
 
 function renderBlocks() {
   if (showBlocks) {

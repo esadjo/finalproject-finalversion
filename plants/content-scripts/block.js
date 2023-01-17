@@ -34,7 +34,10 @@ function addBlock(name, block) {
   } else if (name == "clover") {
     myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/clover.png?raw=true';
   }
+  
   block.appendChild(myImage);
+  //myImage.style.cssText += "transition: transform 30.5s ease-in-out; transform: scale(1.2,1.2);";
+  //myImage.style += "transition: transform 20.5s ease-in-out; transform: scale(1.2,1.2);";
   
 }
 
@@ -90,3 +93,11 @@ chrome.runtime.onMessage.addListener((request) => {
   renderBlocks();
 });
 
+// Testing
+// Get the rules key from Chrome storage, and assign its value to our rules
+// object
+/*chrome.storage.sync.get("plants", (items) => {
+  plants = items.plants;
+  addBlock(plants, ultimateBlock);
+  renderBlocks();
+});*/

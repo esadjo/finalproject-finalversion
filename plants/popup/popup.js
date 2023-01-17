@@ -16,9 +16,9 @@ const addSprout = document.getElementById("sprout");
 const addHerb = document.getElementById("herb");
 const addClover = document.getElementById("clover");
 
-addSprout.addEventListener("click", (e) => updateContentScript(true, "sprout")); 
-addHerb.addEventListener("click", (e) => updateContentScript(true, "herb")); 
-addClover.addEventListener("click", (e) => updateContentScript(true, "clover")); 
+addSprout.addEventListener("click", (e) => updateContentScript(true, "sprout"), saveRule("sprout")); 
+addHerb.addEventListener("click", (e) => updateContentScript(true, "herb"), saveRule("herb")); 
+addClover.addEventListener("click", (e) => updateContentScript(true, "clover"), saveRule("clover")); 
 
 
 
@@ -41,4 +41,10 @@ async function updateContentScript(addBlock, name) {
   const response = await chrome.tabs.sendMessage(tab.id, message);
   // You can do something with response from the content script here
   console.log(response);
+}
+
+//Testing
+function saveRule(plants) {
+  //plants = ["sprout", "herb"]
+  chrome.storage.sync.set({ plants: plants });
 }

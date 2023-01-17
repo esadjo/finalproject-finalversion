@@ -59,3 +59,16 @@ button {
   border-radius: 50%;
   position: absolute;
 }
+
+
+.image-an {
+  /*Reference https://stackoverflow.com/questions/28726430/css-how-to-scale-an-image-from-the-center-instead-of-top-left */
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1.1,1.1);
+
+}
+
+/*https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition1*/
+.image-an:hover {
+  transform: scale(1.1,1.1);
+}

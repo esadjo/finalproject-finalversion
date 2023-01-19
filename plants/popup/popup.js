@@ -55,10 +55,7 @@ async function updateContentScript(addBlock, name) {
 }
 
 
-//Testing
 function saveRule(name) {
-  console.log('This is save rule!');
-  //plants = {};
-  //plants = ["sprout", "herb", "clover"];
+  //console.log('This is save rule!');
   chrome.storage.sync.set({ plants: name });
 }

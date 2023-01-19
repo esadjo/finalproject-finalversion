@@ -52,6 +52,16 @@ function renderBlocks() {
 
 const ultimateBlock = document.createElement("div");
 
+
+// UNCOMMENT TESTING
+// Get the rules key from Chrome storage, and assign its value to our rules
+// object
+chrome.storage.sync.get("plants", (items) => {
+  type = items.plants;
+  addBlock(type, ultimateBlock);
+  renderBlocks();
+});
+
 // COPY THIS CODE!!
 // Add a message listener that sets the value of "replace"
 chrome.runtime.onMessage.addListener((request) => {
@@ -67,11 +77,4 @@ chrome.runtime.onMessage.addListener((request) => {
   renderBlocks();
 });
 
-// Testing
-// Get the rules key from Chrome storage, and assign its value to our rules
-// object
-chrome.storage.sync.get("plants", (items) => {
-  plants = items.plants;
-  addBlock(plants, ultimateBlock);
-  renderBlocks();
-});
+

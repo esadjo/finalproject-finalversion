@@ -3,6 +3,10 @@
     "name": "Web Plants",
     "description": "Plant a plant in the lower left corner of your browser to keep the environment close to home in your mind",
     "version": "1.0",
+    "permissions": [
+        "storage"
+    ],
+    
     "action": {
         "default_popup": "popup/popup.html",
         "default_icon": "images/icon-32.png"

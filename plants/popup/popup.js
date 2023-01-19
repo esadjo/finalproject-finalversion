@@ -16,9 +16,20 @@ const addSprout = document.getElementById("sprout");
 const addHerb = document.getElementById("herb");
 const addClover = document.getElementById("clover");
 
-addSprout.addEventListener("click", (e) => updateContentScript(true, "sprout"), saveRule("sprout")); 
-addHerb.addEventListener("click", (e) => updateContentScript(true, "herb"), saveRule("herb")); 
-addClover.addEventListener("click", (e) => updateContentScript(true, "clover"), saveRule("clover")); 
+addSprout.addEventListener("click", (e) => {
+  updateContentScript(true, "sprout"); 
+  saveRule("sprout");
+}); 
+
+addHerb.addEventListener("click", (e) => {
+  updateContentScript(true, "herb");
+  saveRule("herb");
+}); 
+
+addClover.addEventListener("click", (e) => {
+  updateContentScript(true, "clover"); 
+  saveRule("clover");
+}); 
 
 
 

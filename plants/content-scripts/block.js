@@ -70,8 +70,8 @@ chrome.runtime.onMessage.addListener((request) => {
 // Testing
 // Get the rules key from Chrome storage, and assign its value to our rules
 // object
-/*chrome.storage.sync.get("plants", (items) => {
+chrome.storage.sync.get("plants", (items) => {
   plants = items.plants;
   addBlock(plants, ultimateBlock);
   renderBlocks();
-});*/
+});

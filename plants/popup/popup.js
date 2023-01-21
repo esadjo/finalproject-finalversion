@@ -10,9 +10,25 @@ function saveCheck(status) {
 
 console.log("Checkbox status before: " + checkbox.checked);
 
+
+chrome.storage.sync.get("check", (items) => {
+  showBlocks = items.check;
+  checkbox.checked = showBlocks;
+  console.log("Forcing toggle state to update: " + showBlocks);
+});
+
 // Add event listeners to the checkbox and button
 checkbox.addEventListener("change", (e) => {
   saveCheck(checkbox.checked); 
+  if (checkbox.checked == false) {
+    updateContentScript("inactive"); // Testing
+  } else if (checkbox.checked == true) {
+    var type;
+    chrome.storage.sync.get("plants", (items) => {
+      type = items.plants;
+    });
+    updateContentScript(type);
+  }
   //const response = await chrome.tabs.sendMessage(tab.id, message);
 });
 
@@ -61,6 +77,9 @@ async function updateContentScript(name) {
   } else if (name == "clover") {
     updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D2F4A1");
     console.log("Recognizes that clover selected");
+  } else if (name =="inactive") {
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#FFFFFF");
+    console.log("Recognizes that toggle changes");
   }
 
   //ADDING TESTING 

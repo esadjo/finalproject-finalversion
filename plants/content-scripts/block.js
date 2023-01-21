@@ -1,5 +1,6 @@
-//var showBlocks = true; 
-let showBlocks = true;
+//var showBlocks = true;
+//let showBlocks = true; 
+var showBlocks;
 var type = "";
 
 
@@ -57,7 +58,33 @@ function renderBlocks() {
 
 const ultimateBlock = document.createElement("div");
 
+chrome.storage.sync.get("check", (items) => {
+  showBlocks = items.check;
+  console.log("This is the current showBlocks state OUTSIDE: " + showBlocks);
+});
+console.log("This is Outside of chrome.runtime.onMessage");
 
+chrome.storage.sync.get("plants", (items) => {
+  type = items.plants;
+  console.log("This is the current type: " + type);
+  console.log("This is what checkmark is currently saying: " + showBlocks);
+  /*if (showBlocks = true) {
+    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
+    while (ultimateBlock.hasChildNodes()) { 
+      ultimateBlock.removeChild(ultimateBlock.firstChild);
+      console.log("cleared");
+    } 
+    addBlock(type, ultimateBlock);
+    console.log("In true fo showblocks if statement");
+  } else {
+    while (ultimateBlock.hasChildNodes()) { 
+      ultimateBlock.removeChild(ultimateBlock.firstChild);
+      console.log("Remove");
+    } 
+    console.log("In false fo showblocks if statement");
+  }*/
+});
+//renderBlocks();
 
 
 
@@ -67,22 +94,32 @@ chrome.runtime.onMessage.addListener((request) => {
   // object
   chrome.storage.sync.get("check", (items) => {
     showBlocks = items.check;
-    console.log("This is the current showBlocks state: " + showBlocks);
+    console.log("This is the current showBlocks state INSIDE: " + showBlocks);
   });
-
+  console.log("This is INSIDE of chrome.runtime.onMessage");
+  renderBlocks();
   chrome.storage.sync.get("plants", (items) => {
     type = items.plants;
     console.log("This is the current type: " + type);
-    if (showBlocks = true) {
+    if (showBlocks == true) {
+      console.log("Inside if showBlocks = true");
       // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
       while (ultimateBlock.hasChildNodes()) { 
         ultimateBlock.removeChild(ultimateBlock.firstChild);
         console.log("cleared");
       } 
       addBlock(type, ultimateBlock);
+      console.log("here");
+      
+    } else {
+      console.log("Inside if showBlocks = false");
+      while (ultimateBlock.hasChildNodes()) { 
+        ultimateBlock.removeChild(ultimateBlock.firstChild);
+        console.log("Remove");
+      } 
     }
   });
-  renderBlocks();
+  //renderBlocks();
 });
 
 

@@ -1,6 +1,11 @@
-
-
+//var showBlocks = true; 
 let showBlocks = true;
+var type = "";
+
+
+
+
+
 
 // Create a block container div and append it to the document
 const blockContainer = document.createElement("div");
@@ -53,25 +58,30 @@ function renderBlocks() {
 const ultimateBlock = document.createElement("div");
 
 
-// Get the rules key from Chrome storage, and assign its value to our rules
-// object
-chrome.storage.sync.get("plants", (items) => {
-  type = items.plants;
-  addBlock(type, ultimateBlock);
-  renderBlocks();
-});
+
+
 
 // Add a message listener that sets the value of "replace"
 chrome.runtime.onMessage.addListener((request) => {
-  showBlocks = request["enable"];
-  dispType = request["type"]; //TESTING // specify plant
-  if (request["addBlock"]) {
-    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
-    while (ultimateBlock.hasChildNodes()) { 
-      ultimateBlock.removeChild(ultimateBlock.firstChild);
-    } 
-    addBlock(dispType, ultimateBlock);
-  }
+  // Get the rules key from Chrome storage, and assign its value to our rules
+  // object
+  chrome.storage.sync.get("check", (items) => {
+    showBlocks = items.check;
+    console.log("This is the current showBlocks state: " + showBlocks);
+  });
+
+  chrome.storage.sync.get("plants", (items) => {
+    type = items.plants;
+    console.log("This is the current type: " + type);
+    if (showBlocks = true) {
+      // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
+      while (ultimateBlock.hasChildNodes()) { 
+        ultimateBlock.removeChild(ultimateBlock.firstChild);
+        console.log("cleared");
+      } 
+      addBlock(type, ultimateBlock);
+    }
+  });
   renderBlocks();
 });
 

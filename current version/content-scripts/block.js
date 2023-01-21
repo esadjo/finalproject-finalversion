@@ -59,7 +59,6 @@ chrome.storage.sync.get("plants", (items) => {
   renderBlocks();
 });
 
-
 // Add a message listener that sets the value of "replace"
 chrome.runtime.onMessage.addListener((request) => {
   showBlocks = request["enable"];
@@ -70,10 +69,6 @@ chrome.runtime.onMessage.addListener((request) => {
       ultimateBlock.removeChild(ultimateBlock.firstChild);
     } 
     addBlock(dispType, ultimateBlock);
-    console.log("testing. Does it ever get here?");
-  } 
+  }
   renderBlocks();
 });
-
-
-

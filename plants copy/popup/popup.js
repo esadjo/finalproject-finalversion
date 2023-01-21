@@ -12,6 +12,11 @@ chrome.storage.sync.get("check", (items) => {
   if (showBlocks == false) {
     updateContentScript(false, "no");
   }
+  var type;
+  chrome.storage.sync.get("plants", (items) => {
+    type = items.plants;
+    updateContentScript(type);
+  });
 });
 
 

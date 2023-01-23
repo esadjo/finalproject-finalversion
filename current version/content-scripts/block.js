@@ -40,6 +40,11 @@ function deleteParent(e) {
   e.target.parentNode.remove();
 }
 
+chrome.storage.sync.get("check", (items) => {
+  showBlocks = items.check;
+});
+
+
 function renderBlocks() {
   if (showBlocks) {
     blockContainer.classList.remove("invisible");
@@ -49,6 +54,7 @@ function renderBlocks() {
 }
 
 const ultimateBlock = document.createElement("div");
+
 
 
 // Get the rules key from Chrome storage, and assign its value to our rules

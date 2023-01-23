@@ -14,6 +14,11 @@ chrome.storage.sync.get("check", (items) => {
   }
 });
 
+chrome.storage.sync.get("plants", (items) => {
+  type = items.plants;
+  updateButton(type);
+});
+
 
 // Add event listeners to the checkbox and button
 checkbox.addEventListener("change", (e) => {
@@ -54,16 +59,20 @@ function saveCheck(status) {
 }
 
 
+function updateButton(type) {
+  if (type == "sprout") {
+    updateButtonColor(addSprout, addHerb, addClover, "#D2F4A1", "#FFFFFF", "#FFFFFF");
+  } else if (type == "herb") {
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#D2F4A1", "#FFFFFF");
+  } else if (type == "clover") {
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D2F4A1");
+  }
+}
+
 async function updateContentScript(addBlock, name) {
   // Sends a message to the content script with an object that has the
   // current value of the checkbox and a boolean (whether to add a block)
-  if (name == "sprout") {
-    updateButtonColor(addSprout, addHerb, addClover, "#D2F4A1", "#FFFFFF", "#FFFFFF");
-  } else if (name == "herb") {
-    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#D2F4A1", "#FFFFFF");
-  } else if (name == "clover") {
-    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D2F4A1");
-  }
+  updateButton(name);
 
   const message = { enable: checkbox.checked, addBlock: addBlock, type: name };
   const [tab] = await chrome.tabs.query({

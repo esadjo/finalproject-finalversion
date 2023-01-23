@@ -26,11 +26,11 @@ function addBlock(name, block) {
   
   const myImage = new Image(100, 100);
   if (name == "sprout") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/sprout.png?raw=true';
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/sprout.png?raw=true';
   } else if (name == "herb") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/herb.png?raw=true';
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/herb.png?raw=true';
   } else if (name == "clover") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/clover.png?raw=true';
+    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/clover.png?raw=true';
   }
   
   block.appendChild(myImage);

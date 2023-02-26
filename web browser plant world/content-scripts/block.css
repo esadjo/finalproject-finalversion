@@ -2,14 +2,14 @@
 
 .blocker-block {
   /* Positioning for children */
-  display: flex;
-  flex-direction: column;
+  /*display: flex;
+  flex-direction: column;*/
   align-items: center;
   justify-content: center;
 
   /* Specify initial position and dimensions */
   position: fixed;
-  top: calc(100% - 100px);
+  top: calc(99% - 150px); /*100% - 100px*/
   left: 50px;
   /*top: calc(50vh - 150px);
   left: calc(50vw - 150px);*/

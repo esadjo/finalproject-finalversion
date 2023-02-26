@@ -23,8 +23,12 @@ function addBlock(name, block) {
 
   // Add the block to the block container
   blockContainer.appendChild(block);
+
+  const weatherIconImg = new Image(50, 50);
+  weatherIconImg.src = 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
+  block.appendChild(weatherIconImg);
   
-  const myImage = new Image(100, 100);
+  const myImage = new Image(50, 50);
   if (name == "sprout") {
     myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/sprout.png?raw=true';
   } else if (name == "herb") {
@@ -35,9 +39,11 @@ function addBlock(name, block) {
   
   //TESTING -- TRYING TO ADD BACKGROUND
   block.appendChild(myImage);
-  const backgroundImg = new Image(200, 200);
-  backgroundImg.src = '/images/backgroundImg.png';
+  const backgroundImg = new Image(100, 100);
+  backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
   block.appendChild(backgroundImg);
+
+
 }
 
 function deleteParent(e) {

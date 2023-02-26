@@ -1,0 +1,74 @@
+
+
+.blocker-block {
+  /* Positioning for children */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* Specify initial position and dimensions */
+  position: fixed;
+  top: calc(100% - 100px);
+  left: 50px;
+  /*top: calc(50vh - 150px);
+  left: calc(50vw - 150px);*/
+  height: 100px;
+  width: 100px;
+
+  /* Set color to inherit from container */
+  
+
+  /* Make it resizable */
+  /*resize: both;
+  overflow: auto;*/
+}
+
+.blocker-block:hover * {
+  display: block;
+}
+
+
+.invisible {
+  display: none;
+}
+
+.blockContainer {
+  /* Position */
+  top: 0;
+  position: fixed;
+  z-index: 1000000000;
+
+  /* Inherit background color so blocks can also inherit */
+  /*background-color: inherit;*/
+}
+
+button {
+  display: none;
+}
+
+/* To change the cursor*/
+/*body {
+  cursor: url("https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/plants/images/recycle.png?raw=true"), wait;
+}*/
+
+.cursortest {
+  width: 20px; 
+  height: 20px; 
+  border: 1px solid red; 
+  border-radius: 50%;
+  position: absolute;
+}
+
+
+.image-an {
+  /*Reference https://stackoverflow.com/questions/28726430/css-how-to-scale-an-image-from-the-center-instead-of-top-left */
+  transition: transform 0.5s ease-in-out;
+  transform: scale(1.1,1.1);
+
+}
+
+/*https://www.w3schools.com/css/tryit.asp?filename=trycss3_transition1*/
+.image-an:hover {
+  transform: scale(1.1,1.1);
+}

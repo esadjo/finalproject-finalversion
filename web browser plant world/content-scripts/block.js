@@ -27,6 +27,7 @@ function addBlock(name, block) {
   const weatherIconImg = new Image(50, 50);
   weatherIconImg.src = 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
   block.appendChild(weatherIconImg);
+  // Use Interactive Weather API Explorer to see what kind of calls and requests are possible - https://www.weatherapi.com/api-explorer.aspx
   
   const myImage = new Image(50, 50);
   if (name == "sprout") {

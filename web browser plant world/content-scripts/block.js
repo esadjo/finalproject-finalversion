@@ -33,7 +33,11 @@ function addBlock(name, block) {
     myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/clover.png?raw=true';
   }
   
+  //TESTING -- TRYING TO ADD BACKGROUND
   block.appendChild(myImage);
+  const backgroundImg = new Image(200, 200);
+  backgroundImg.src = '/images/backgroundImg.png';
+  block.appendChild(backgroundImg);
 }
 
 function deleteParent(e) {

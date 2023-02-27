@@ -1,4 +1,7 @@
 let showBlocks = true;
+let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
+let currentWeather;
+const weatherIconImg = new Image(50, 50);
 
 // Create a block container div and append it to the document
 const blockContainer = document.createElement("div");
@@ -13,19 +16,50 @@ function clear(element) {
   }
 }
 
+// Reference for fetch - https://github.com/branchwelder/example-fetch/blob/main/index.js 
+function getWeatherIcon() {
+  console.log("At beginning of getWeatherIcon function");
+  fetch("https://api.weatherapi.com/v1/current.json?key=[ ADD KEY HERE and remove brackets ]&q=Seattle&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
+  // Then convert the response to JSON
+  .then((response) => response.json())
+  .then((data) => {
+   // console.log(data);
+    let weatherDetails = data;
+    icon = "https:" + weatherDetails['current']['condition']['icon'];
+    currentWeather = weatherDetails['current']['condition']['text'];
+    console.log(icon);
+    console.log(currentWeather);
+    weatherIconImg.src = icon;
+  });
+  console.log("At end of getWeatherIcon function");
+ // console.log(response.value);
+  
+  // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+  // Then do something with the JSON data
+  //.then((data) => {
+   // let weather = data;
+}
+
+
 
 
 function addBlock(name, block) {
+  console.log("here");
+  console.log("This is icon rn:" + icon);
+  //TESTING GETHWEATHERICON
+  getWeatherIcon();
+
   // Create a div for the block
   // block.remove();
   block.classList.add("blocker-block");
 
 
+
   // Add the block to the block container
   blockContainer.appendChild(block);
 
-  const weatherIconImg = new Image(50, 50);
-  weatherIconImg.src = 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
+  //const weatherIconImg = new Image(50, 50);
+  weatherIconImg.src = icon; // Hard coded -- 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
   block.appendChild(weatherIconImg);
   // Use Interactive Weather API Explorer to see what kind of calls and requests are possible - https://www.weatherapi.com/api-explorer.aspx
   
@@ -43,8 +77,6 @@ function addBlock(name, block) {
   const backgroundImg = new Image(100, 100);
   backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
   block.appendChild(backgroundImg);
-
-
 }
 
 function deleteParent(e) {

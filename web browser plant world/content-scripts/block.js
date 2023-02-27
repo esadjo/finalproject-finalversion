@@ -2,9 +2,17 @@ let showBlocks = true;
 let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 const weatherIconImg = new Image(50, 50);
-// Temporarily removed the intervalID for automatically running getWeatherIcon because causes changing the plant type to not work -- QUESTION OF WHY??
-//const intervalID = setInterval(getWeatherIcon, 1800000); //60000 for every minute // Change to 600000 for 10 minutes // Calling function every 1 minute (eventuall 30): https://developer.mozilla.org/en-US/docs/Web/API/setInterval
 let count = 0;
+
+getWeatherIcon(); // just once so will load properly when first open
+
+
+  //TESTING GETHWEATHERICON
+  // Temporarily removed the intervalID for automatically running getWeatherIcon because causes changing the plant type to not work -- QUESTION OF WHY??
+  //60000 for every minute // Change to 600000 for 10 minutes // Calling function every 1 minute (eventuall 30): https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+    // Logical error resolve -- how to make sure that this function is only call every 15 minutes instead of restarting that timer each time a user changes the plant type and it restarts the page -- the way to go about this is to not call this function directly in the function that creates the block (will be called everytime the items update) (THIS STEP IS DONE!)
+  const intervalID = setInterval(getWeatherIcon, 60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
+// Question of how make sure it's called more requently than set interval once accepting user input of the location (will need to update more frequently than every 10-15 minutes)
 
 // Create a block container div and append it to the document
 const blockContainer = document.createElement("div");
@@ -20,7 +28,7 @@ function clear(element) {
 }
 
 // Reference for fetch - https://github.com/branchwelder/example-fetch/blob/main/index.js 
-function getWeatherIcon() {
+function getWeatherIcon() { 
   console.log("At beginning of getWeatherIcon function");
   fetch("https://api.weatherapi.com/v1/current.json?key=[ ADD KEY HERE and remove brackets ]&q=Seattle&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
   // Then convert the response to JSON
@@ -55,8 +63,6 @@ function getWeatherIcon() {
 function addBlock(name, block) {
   console.log("here");
   console.log("This is icon rn:" + icon);
-  //TESTING GETHWEATHERICON
-  getWeatherIcon();
 
   // Create a div for the block
   // block.remove();

@@ -2,6 +2,9 @@ let showBlocks = true;
 let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 const weatherIconImg = new Image(50, 50);
+// Temporarily removed the intervalID for automatically running getWeatherIcon because causes changing the plant type to not work -- QUESTION OF WHY??
+//const intervalID = setInterval(getWeatherIcon, 1800000); //60000 for every minute // Change to 600000 for 10 minutes // Calling function every 1 minute (eventuall 30): https://developer.mozilla.org/en-US/docs/Web/API/setInterval
+let count = 0;
 
 // Create a block container div and append it to the document
 const blockContainer = document.createElement("div");
@@ -30,6 +33,8 @@ function getWeatherIcon() {
     console.log(icon);
     console.log(currentWeather);
     weatherIconImg.src = icon;
+    count += 1;
+    console.log("Count: " + count);
   });
   console.log("At end of getWeatherIcon function");
  // console.log(response.value);
@@ -39,6 +44,10 @@ function getWeatherIcon() {
   //.then((data) => {
    // let weather = data;
 }
+
+
+
+
 
 
 

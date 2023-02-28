@@ -3,6 +3,7 @@ let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 const weatherIconImg = new Image(50, 50);
 let count = 0;
+let location = 'seattle';
 
 getWeatherIcon(); // just once so will load properly when first open
 
@@ -30,7 +31,9 @@ function clear(element) {
 // Reference for fetch - https://github.com/branchwelder/example-fetch/blob/main/index.js 
 function getWeatherIcon() { 
   console.log("At beginning of getWeatherIcon function");
-  fetch("https://api.weatherapi.com/v1/current.json?key=[ ADD KEY HERE and remove brackets ]&q=Seattle&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
+  console.log("Location inputted: " + location);
+  fetch("https://api.weatherapi.com/v1/current.json?key=704ded686c984558b5b13346232402&q=Seattle&aqi=no")
+  //fetch("https://api.weatherapi.com/v1/current.json?key=704ded686c984558b5b13346232402&q=" + location + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
   // Then convert the response to JSON
   .then((response) => response.json())
   .then((data) => {
@@ -57,9 +60,6 @@ function getWeatherIcon() {
 
 
 
-
-
-
 function addBlock(name, block) {
   console.log("here");
   console.log("This is icon rn:" + icon);
@@ -67,8 +67,6 @@ function addBlock(name, block) {
   // Create a div for the block
   // block.remove();
   block.classList.add("blocker-block");
-
-
 
   // Add the block to the block container
   blockContainer.appendChild(block);

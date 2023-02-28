@@ -107,6 +107,7 @@ async function updateContentScript(addBlock, name) {
     active: true,
     lastFocusedWindow: true,
   });
+  
   const response = await chrome.tabs.sendMessage(tab.id, message);
   // You can do something with response from the content script here
   console.log(response);

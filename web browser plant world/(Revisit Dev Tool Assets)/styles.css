@@ -1,0 +1,17 @@
+body {
+  margin: 0 auto;
+  max-width: 50rem;
+  font-family: "Helvetica", "Arial", sans-serif;
+  line-height: 1.5;
+  padding: 4rem 1rem;
+  color: #555;
+}
+
+h1,
+strong {
+  color: #333;
+}
+
+a {
+  color: #c75a00;
+}

@@ -1,5 +1,5 @@
 // QUESTION - IS THE PROCESS OF USING A DEV TOOLCHAIN DIFFERENT FROM A WEB EXTENSION BROWSER
-// To do before done with prototype 1 - Need to make sure that the getWeatherIcon etc functions are rerun immediately to update the weather icon as soon as user inputs a new location
+// To do before done with prototype 1 - Need to make sure that the getWeatherIcon etc functions are rerun immediately to update the weather icon as soon as user inputs a new location when slow down the number of set interval function
 let showBlocks = true;
 let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;

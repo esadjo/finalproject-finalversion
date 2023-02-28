@@ -65,8 +65,9 @@ function saveCheck(status) {
 }
 
 function SaveUpdateLocation(loc) {
-  console.log("Location inputed: " + loc.value);
-  chrome.storage.sync.set({ locationSaved: loc });
+  console.log('where is this?');
+  console.log("Location inputted: " + loc.value);
+  chrome.storage.sync.set({ locationSaved: loc.value });
   locationDisplay.innerHTML = loc.value;
   // [TO DO] -- ADD CODE SO THAT THE LOCATION IS UPDATED ON THE POPUP SCREEN
 }
@@ -102,15 +103,15 @@ async function updateContentScript(addBlock, name) {
   //updateLocation();
   
   const message = { enable: checkbox.checked, addBlock: addBlock, type: name}; //Testing: locate: locationDisplay.innerHTML
-  console.log(message);
+  //console.log(message);
   const [tab] = await chrome.tabs.query({
     active: true,
     lastFocusedWindow: true,
   });
-  
+
   const response = await chrome.tabs.sendMessage(tab.id, message);
   // You can do something with response from the content script here
-  console.log(response);
+  //console.log(response);
 }
 
 

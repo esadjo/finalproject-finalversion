@@ -1,17 +1,25 @@
 const locationInput = document.getElementById("locationtext"); 
-updateLocation();
+//updateLocation();
 const locationEntered = document.getElementById("locationBut"); 
-locationEntered.addEventListener("click", (e) => {
-  SaveUpdateLocation(locationInput);
-});
 const locationDisplay = document.getElementById("locationUpfront");
+let globalLocation = 'Seattle'; // or can leave empty
+console.log("Global location var:" + globalLocation);
 
 const checkbox = document.getElementById("enable");
-
 console.log("Checkbox status before: " + checkbox.checked);
 
 
+
+chrome.storage.sync.get("locationSaved", (items) => {
+  console.log("in chrome.storage.sync.get locationSaved");
+  loct = items.locationSaved;
+  locationDisplay.innerHTML = loct;
+  globalLocation = loct;
+  console.log(locationDisplay);
+}); 
+
 chrome.storage.sync.get("check", (items) => {
+  console.log("in chrome storage get check");
   showBlocks = items.check;
   checkbox.checked = showBlocks;
   console.log("Forcing toggle state to update: " + showBlocks);
@@ -21,13 +29,48 @@ chrome.storage.sync.get("check", (items) => {
 });
 
 chrome.storage.sync.get("plants", (items) => {
+  console.log("in chrome storaget get plants");
   type = items.plants;
   updateButton(type);
+}); 
+
+
+
+locationEntered.addEventListener("click", (e) => {
+  console.log("in event listener for clicking the button to enter location");
+  SaveUpdateLocation(locationInput);
+ // checkState();
+  chrome.storage.sync.get("plants", (items) => {
+    type = items.plants;
+    updateContentScript(checkbox.checked, type); // instead make a object with all three data points 
+  }); 
 });
+
+
+
+
+function checkState() {
+  chrome.storage.sync.get("check", (items) => {
+    console.log('in checkState');
+    showBlocks = items.check;
+    checkbox.checked = showBlocks;
+    console.log("Forcing toggle state to update: " + showBlocks);
+    if (showBlocks == false) {
+      updateContentScript(false, "no");
+    }
+  });
+  
+  chrome.storage.sync.get("plants", (items) => {
+    console.log("in sync get plants");
+    type = items.plants;
+    updateButton(type);
+  }); 
+}
 
 
 // Add event listeners to the checkbox and button
 checkbox.addEventListener("change", (e) => {
+  console.log('event listener to changes in toggle');
   saveCheck(checkbox.checked);
   updateContentScript(false, "no");
 });
@@ -69,6 +112,8 @@ function SaveUpdateLocation(loc) {
   console.log("Location inputted: " + loc.value);
   chrome.storage.sync.set({ locationSaved: loc.value });
   locationDisplay.innerHTML = loc.value;
+  globalLocation  = loc.value; // QUESTIon -- shoudl update location be moved?
+  console.log("Global location var: " + globalLocation);
   // [TO DO] -- ADD CODE SO THAT THE LOCATION IS UPDATED ON THE POPUP SCREEN
 }
 
@@ -80,6 +125,7 @@ function updateLocation() {
       locationDisplay.innerHTML = "No location added";
     } else {
       locationDisplay.innerHTML = locationInputted.value;
+      globalLocation  = locationInputted.value;
     }
   });
 }
@@ -101,8 +147,10 @@ async function updateContentScript(addBlock, name) {
   updateButton(name);
   //SaveUpdateLocation(locationInput);
   //updateLocation();
+
+  console.log("location display: " + globalLocation);
   
-  const message = { enable: checkbox.checked, addBlock: addBlock, type: name}; //Testing: locate: locationDisplay.innerHTML
+  const message = { enable: checkbox.checked, addBlock: addBlock, type: name, location2: globalLocation}; //Testing: locate: locationDisplay.innerHTML
   //console.log(message);
   const [tab] = await chrome.tabs.query({
     active: true,

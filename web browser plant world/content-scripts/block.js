@@ -1,13 +1,27 @@
 // QUESTION - IS THE PROCESS OF USING A DEV TOOLCHAIN DIFFERENT FROM A WEB EXTENSION BROWSER
 // To do before done with prototype 1 - Need to make sure that the getWeatherIcon etc functions are rerun immediately to update the weather icon as soon as user inputs a new location when slow down the number of set interval function
 let showBlocks = true;
-let icon = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
+let icon; // = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 const weatherIconImg = new Image(50, 50);
 let count = 0;
-let locationf = 'seattle';
+let locationf = 'Los Angeles';
 
-getWeatherIcon(); // just once so will load properly when first open
+
+console.log("locationf outside of message:" + locationf);
+
+//let locationf;
+
+chrome.storage.sync.get("locationSaved", (items) => {
+  locationf = items.locationSaved; // comment out TO GET IT BACK TO BEING STATIC -- QUESTION OF HOW TO WRITE CODE THAT ENTER ON POPUP LISTEN EVENT TRIGGERS RUNNING GETTING WEATHER ICON AGAIN (MAY NEED TO SAVE AND COMPARE PREVIOUS VERSIONS OF THE LOCATION AND RUN IF NOT THE SAME -- MIGHT BE A SIMPLER WAY)
+});
+
+console.log("locationf outside of message:" + locationf);
+
+
+
+
+//getWeatherIcon(); // just once so will load properly when first open
 
 
   //TESTING GETHWEATHERICON
@@ -40,13 +54,10 @@ function clear(element) {
 // Reference for fetch - https://github.com/branchwelder/example-fetch/blob/main/index.js 
 function getWeatherIcon() { 
   console.log("At beginning of getWeatherIcon function");
-  chrome.storage.sync.get("locationSaved", (items) => {
-    locationf = items.locationSaved; // comment out TO GET IT BACK TO BEING STATIC -- QUESTION OF HOW TO WRITE CODE THAT ENTER ON POPUP LISTEN EVENT TRIGGERS RUNNING GETTING WEATHER ICON AGAIN (MAY NEED TO SAVE AND COMPARE PREVIOUS VERSIONS OF THE LOCATION AND RUN IF NOT THE SAME -- MIGHT BE A SIMPLER WAY)
-  });
 
   console.log("Location inputted: " + locationf);
 
-  fetch("https://api.weatherapi.com/v1/current.json?key=[ ADD KEY AND REMOVE BRACKETS ]&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
+  fetch("https://api.weatherapi.com/v1/current.json?key=[Add key and remove brackets]&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
   // Then convert the response to JSON
   .then((response) => response.json())
   .then((data) => {
@@ -82,8 +93,6 @@ function getWeatherIcon() {
 
 
 function addBlock(name, block) {
-  console.log("here");
-  console.log("This is icon rn:" + icon);
 
   // Create a div for the block
   // block.remove();
@@ -91,6 +100,11 @@ function addBlock(name, block) {
 
   // Add the block to the block container
   blockContainer.appendChild(block);
+
+  getWeatherIcon();
+  console.log("here");
+  console.log("This is icon rn:" + icon);
+  
 
   //const weatherIconImg = new Image(50, 50);
   weatherIconImg.src = icon; // Hard coded -- 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
@@ -134,6 +148,9 @@ const ultimateBlock = document.createElement("div");
 
 
 
+
+
+
 // Get the rules key from Chrome storage, and assign its value to our rules
 // object
 chrome.storage.sync.get("plants", (items) => {
@@ -142,10 +159,15 @@ chrome.storage.sync.get("plants", (items) => {
   renderBlocks();
 });
 
-// Add a message listener that sets the value of "replace"
+// Add a message listener that sets the value of "replace" // so that updates when changes are paid (e.g., when new location sent)
 chrome.runtime.onMessage.addListener((request) => {
+  console.log("SHOULD BE SHOWING MESSAGE!!!");
+  console.log(request);
   showBlocks = request["enable"];
-  dispType = request["type"]; //TESTING // specify plant
+  dispType = request["type"];
+  locationf = request['location2'];
+  console.log("locationf in message:" + locationf);
+  //locationf = ultLocation; // Maybe????
   if (request["addBlock"]) {
     // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
     while (ultimateBlock.hasChildNodes()) { 

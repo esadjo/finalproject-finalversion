@@ -58,7 +58,7 @@ function getWeatherIcon() {
 
   console.log("Location inputted: " + locationf);
 
-  fetch("https://api.weatherapi.com/v1/current.json?key=" + mykey + "&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
+  fetch("https://api.weatherapi.com/v1/current.json?key=f6ebba3edec24edbba9211625232802&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
   // Then convert the response to JSON
   .then((response) => response.json())
   .then((data) => {

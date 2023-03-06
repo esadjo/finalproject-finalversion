@@ -17,8 +17,7 @@
                 "*://*/*" 
             ],
             "js": [
-                "content-scripts/block.js",
-                "config.js"
+                "content-scripts/block.js"
             ],
             "css": [
                 "content-scripts/block.css"

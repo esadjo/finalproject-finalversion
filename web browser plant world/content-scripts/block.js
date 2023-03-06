@@ -28,7 +28,7 @@ console.log("locationf outside of message:" + locationf);
   // Temporarily removed the intervalID for automatically running getWeatherIcon because causes changing the plant type to not work -- QUESTION OF WHY??
   //60000 for every minute // Change to 600000 for 10 minutes // Calling function every 1 minute (eventuall 30): https://developer.mozilla.org/en-US/docs/Web/API/setInterval
     // Logical error resolve -- how to make sure that this function is only call every 15 minutes instead of restarting that timer each time a user changes the plant type and it restarts the page -- the way to go about this is to not call this function directly in the function that creates the block (will be called everytime the items update) (THIS STEP IS DONE!)
-  const intervalID = setInterval(getWeatherIcon, 6000); //60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
+  const intervalID = setInterval(getWeatherIcon, 900000); //60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
 // Question of how make sure it's called more requently than set interval once accepting user input of the location (will need to update more frequently than every 10-15 minutes)
 
 // Create a block container div and append it to the document
@@ -57,7 +57,7 @@ function getWeatherIcon() {
 
   console.log("Location inputted: " + locationf);
 
-  fetch("https://api.weatherapi.com/v1/current.json?key=[Add key and remove brackets]&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
+  fetch("https://api.weatherapi.com/v1/current.json?key=[ADD KEY AND REMOVE BRACKETS]&q=" + locationf + "&aqi=no") // https://www.weatherapi.com/api-explorer.aspx
   // Then convert the response to JSON
   .then((response) => response.json())
   .then((data) => {

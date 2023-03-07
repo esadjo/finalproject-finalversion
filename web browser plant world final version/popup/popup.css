@@ -19,7 +19,7 @@ h3 {
 
 .popup-title {
   font-weight: 900;
-  background-color: #3D7F20;
+  background-color: #005B90;
   color: rgb(255, 255, 255);
   width: 100%;
   padding:6px;
@@ -42,16 +42,16 @@ h3 {
 }
 
 button {
-  background-color: #3D7F20; 
+  background-color: #005B90; 
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   color: white;
   padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 2px 2px;
+  margin: 6px 6px;
   cursor: pointer; /*need to specify to the type*/
 }
 
@@ -71,7 +71,7 @@ button:hover {
 
 
 .plant {
-  width: 40px;
+  width: 46.19px;
   height: 40px;
 }
 
@@ -136,17 +136,35 @@ button:hover {
 }
 
 input:checked + .slider {
-  background-color: #3D7F20;
+  background-color: #005B90;
 }
 
+
 input:focus + .slider {
-  box-shadow: 0 0 1px #3D7F20;
+  box-shadow: 0 0 1px #005B90;
 }
 
 input:checked + .slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+}
+
+
+input {
+  width: 60%;
+  padding: 12px 8px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #777777;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'Rubik', sans-serif;
+}
+
+input:focus {
+  border: 3px solid #005B90;
 }
 
 

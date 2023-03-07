@@ -37,6 +37,7 @@ chrome.storage.sync.get("plants", (items) => {
   console.log("in chrome storaget get plants");
   type = items.plants;
   updateButton(type);
+  //updateContentScript(checkbox.checked, type); // NOTE TO SELF HERE ---  ADDED TO SEE IF IT WILL HELP THE MESSAGE TO RUN WITHOUT AN EVENT LISTENER THE FIRST 
 }); 
 
 
@@ -137,11 +138,11 @@ function updateLocation() {
 
 function updateButton(type) {
   if (type == "sprout") {
-    updateButtonColor(addSprout, addHerb, addClover, "#D2F4A1", "#FFFFFF", "#FFFFFF");
+    updateButtonColor(addSprout, addHerb, addClover, "#D8EDFF", "#FFFFFF", "#FFFFFF");
   } else if (type == "herb") {
-    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#D2F4A1", "#FFFFFF");
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#D8EDFF", "#FFFFFF");
   } else if (type == "clover") {
-    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D2F4A1");
+    updateButtonColor(addSprout, addHerb, addClover, "#FFFFFF", "#FFFFFF", "#D8EDFF");
   }
 }
 

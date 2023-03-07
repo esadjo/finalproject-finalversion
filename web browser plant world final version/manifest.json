@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Plant World",
     "description": "Plant a plant in the lower left corner of your browser to keep the environment close to home in your mind",
-    "version": "1.0",
+    "version": "2.0",
     "permissions": [
         "storage"
     ],

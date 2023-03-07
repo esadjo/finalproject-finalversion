@@ -1,11 +1,22 @@
-// QUESTION - IS THE PROCESS OF USING A DEV TOOLCHAIN DIFFERENT FROM A WEB EXTENSION BROWSER
-// To do before done with prototype 1 - Need to make sure that the getWeatherIcon etc functions are rerun immediately to update the weather icon as soon as user inputs a new location when slow down the number of set interval function
+// LIST OF ERRORS TO RESOLVE:
+  // Not updating plant image to proper condition when change location (only when change type of plant in popup)
+  //Plant image and world image not showing up when move to a different tab OR when refresh page
+  // - WEIRD - plant image changes when hit enter button twice (seems like remembering past selection for too long — something about timing not lining up
+  // Error getting is: 
+      // Error handling response: TypeError: Cannot read properties of undefined (reading 'includes')
+      // at addBlock (chrome-extension://hgmlainahkjaohebembopmgblgdbkacg/content-scripts/block.js:189:28)
+      //at chrome-extension://hgmlainahkjaohebembopmgblgdbkacg/content-scripts/block.js:251:3
+
+  // - Background image also won’t update unless change the plant type (doesn’t change automatically) -- Does change if click enter twice 
+  // Both plant image and background image update properly if submit location 2 times!!! What does this mean?
+
 let showBlocks = true;
 let icon; // = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 const weatherIconImg = new Image(50, 50);
 let count = 0;
 let locationf = 'Los Angeles';
+let dayvalue = 1;
 
 
 
@@ -65,14 +76,16 @@ function getWeatherIcon() {
    // console.log(data);
     let weatherDetails = data;
     icon = "https:" + weatherDetails['current']['condition']['icon'];
-    currentWeather = weatherDetails['current']['condition']['text'];
+    let currentWeatherUpper = weatherDetails['current']['condition']['text'];
+    currentWeather = currentWeatherUpper.toLowerCase();
     console.log(icon);
     console.log(currentWeather);
     weatherIconImg.src = icon;
 
     //Getting day or night 
-    timeofDay = weatherDetails['current']['is_day'];
-    console.log('Day or night (1 = yes, 0 = no):' + timeofDay);
+   dayvalue = weatherDetails['current']['is_day'];
+
+    console.log('Day or night (1 = yes, 0 = no):' + dayvalue);
     // For prototype 2 - will need to write an if statement of whether value is day, then use the day background, else, use the night background
 
 
@@ -112,19 +125,114 @@ function addBlock(name, block) {
   block.appendChild(weatherIconImg);
   // Use Interactive Weather API Explorer to see what kind of calls and requests are possible - https://www.weatherapi.com/api-explorer.aspx
   
-  const myImage = new Image(50, 50);
+  const myImage = new Image(50, 43.30);
+  // PROBLEM HERE FOR PLANT TYPE WEATHER CONDITION IMAGES
   if (name == "sprout") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/sprout.png?raw=true';
-  } else if (name == "herb") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/herb.png?raw=true';
-  } else if (name == "clover") {
-    myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/clover.png?raw=true';
-  }
+    // Reference includes - https://www.w3schools.com/jsref/jsref_includes.asp
+    // Reference lowercase - https://www.w3schools.com/jsref/jsref_tolocalelowercase.asp 
+
+
+    // Clear conditions
+    if (currentWeather.includes("sunny") || currentWeather.includes("clear") || currentWeather.includes("cloudy") || currentWeather.includes("overcast") || currentWeather.includes("thundery outbreaks")) {
+      // "Sunny" , "Clear" , "Partly cloudy", "Cloudy", "Overcast", "Thundery outbreaks possible"
+      // INCLUDES: "sunny", "clear", "cloudy", "overcast", "thundery outbreaks",
+      myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-nothing.png?raw=true';
+    
+    // Rainy Snow Conditions
+    } else if (currentWeather.includes("sleet") || currentWeather.includes("freezing")) {
+      // "Patchy sleet possible", "Patchy freezing drizzle possible", "Freezing drizzle", "Freezing fog", "Light freezing rain", "Moderate or heavy freezing rain", "Light sleet", "Moderate or heavy sleet", "Light sleet showers", "Moderate or heavy sleet showers", 
+      // INCLUDES: "sleet", "freezing"
+      myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-snow-rain.png?raw=true';
+      
+    // Rainy conditions
+    } else if (currentWeather.includes("mist") || currentWeather.includes("patchy rain") || currentWeather.includes("fog") || currentWeather.includes("light drizzle") || currentWeather.includes("light rain") || currentWeather.includes("moderate rain") || currentWeather.includes("heavy rain") || currentWeather.includes("rain shower")) {
+      // "Mist", "Patchy rain possible", "Fog", "Patchy light drizzle", "Light drizzle", "Patchy light rain", "Light rain", "Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Light rain shower", "Moderate or heavy rain shower", "Torrential rain shower", "Patchy light rain with thunder", "Moderate or heavy rain with thunder",
+      //Includes "mist", "patchy rain", "fog", "light drizzle", "light rain", "moderate rain", "heavy rain", "rain shower",
+      myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-rain.png?raw=true';
+    
+    // Snowy conditions  
+    } else if (currentWeather.includes("snow") || currentWeather.includes("blizzard") ||  currentWeather.includes("ice pellets") || currentWeather.includes("snow showers")) {
+      // "Patchy snow possible",  "Blowing snow", "Blizzard",  "Patchy light snow", "Light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Ice pellets", "Light snow showers", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets", "Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Moderate or heavy snow showers",
+      // INCLUDES: "snow", "blizzard", "ice pellets", "snow showers", 
+      myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-snow.png';
+    } else {
+      myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-nothing.png?raw=true';
+    }
   
-  //TESTING -- TRYING TO ADD BACKGROUND
+    
+    //myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/sprout.png?raw=true';
+  } else if (name == "herb") {
+    //myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/herb.png?raw=true';
+    
+        // Clear conditions
+        if (currentWeather.includes("sunny") || currentWeather.includes("clear") || currentWeather.includes("cloudy") || currentWeather.includes("overcast") || currentWeather.includes("thundery outbreaks")) {
+          console.log("in weather conditions clear herb");
+          // "Sunny" , "Clear" , "Partly cloudy", "Cloudy", "Overcast", "Thundery outbreaks possible"
+          // INCLUDES: "sunny", "clear", "cloudy", "overcast", "thundery outbreaks",
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/herb-nothing.png?raw=true';
+        
+        // Rainy Snow Conditions
+        } else if (currentWeather.includes("sleet") || currentWeather.includes("freezing")) {
+          // "Patchy sleet possible", "Patchy freezing drizzle possible", "Freezing drizzle", "Freezing fog", "Light freezing rain", "Moderate or heavy freezing rain", "Light sleet", "Moderate or heavy sleet", "Light sleet showers", "Moderate or heavy sleet showers", 
+          // INCLUDES: "sleet", "freezing"
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/herb-snow-rain.png?raw=true';
+          
+        // Rainy conditions
+        } else if (currentWeather.includes("mist") || currentWeather.includes("patchy rain") || currentWeather.includes("fog") || currentWeather.includes("light drizzle") || currentWeather.includes("light rain") || currentWeather.includes("moderate rain") || currentWeather.includes("heavy rain") || currentWeather.includes("rain shower")) {
+          // "Mist", "Patchy rain possible", "Fog", "Patchy light drizzle", "Light drizzle", "Patchy light rain", "Light rain", "Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Light rain shower", "Moderate or heavy rain shower", "Torrential rain shower", "Patchy light rain with thunder", "Moderate or heavy rain with thunder",
+          //Includes "mist", "patchy rain", "fog", "light drizzle", "light rain", "moderate rain", "heavy rain", "rain shower",
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/herb-rain.png?raw=true';
+        
+        // Snowy conditions  
+        } else if (currentWeather.includes("snow") || currentWeather.includes("blizzard") ||  currentWeather.includes("ice pellets") || currentWeather.includes("snow showers")) {
+          // "Patchy snow possible",  "Blowing snow", "Blizzard",  "Patchy light snow", "Light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Ice pellets", "Light snow showers", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets", "Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Moderate or heavy snow showers",
+          // INCLUDES: "snow", "blizzard", "ice pellets", "snow showers", 
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/herb-snow.png?raw=true';
+        } else {
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/herb-nothing.png?raw=true';
+        }
+
+  } else if (name == "clover") {
+    //myImage.src = 'https://github.com/esadjo/esadjo-bookmarker-extension/blob/main/web%20browser%20plant/images/clover.png?raw=true';
+    
+        // Clear conditions
+        if (currentWeather.includes("sunny") || currentWeather.includes("clear") || currentWeather.includes("cloudy") || currentWeather.includes("overcast") || currentWeather.includes("thundery outbreaks")) {
+          // "Sunny" , "Clear" , "Partly cloudy", "Cloudy", "Overcast", "Thundery outbreaks possible"
+          // INCLUDES: "sunny", "clear", "cloudy", "overcast", "thundery outbreaks",
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/clover-nothing.png?raw=true';
+        
+        // Rainy Snow Conditions
+        } else if (currentWeather.includes("sleet") || currentWeather.includes("freezing")) {
+          // "Patchy sleet possible", "Patchy freezing drizzle possible", "Freezing drizzle", "Freezing fog", "Light freezing rain", "Moderate or heavy freezing rain", "Light sleet", "Moderate or heavy sleet", "Light sleet showers", "Moderate or heavy sleet showers", 
+          // INCLUDES: "sleet", "freezing"
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/clover-snow-rain.png?raw=true';
+          
+        // Rainy conditions
+        } else if (currentWeather.includes("mist") || currentWeather.includes("patchy rain") || currentWeather.includes("fog") || currentWeather.includes("light drizzle") || currentWeather.includes("light rain") || currentWeather.includes("moderate rain") || currentWeather.includes("heavy rain") || currentWeather.includes("rain shower")) {
+          // "Mist", "Patchy rain possible", "Fog", "Patchy light drizzle", "Light drizzle", "Patchy light rain", "Light rain", "Moderate rain at times", "Moderate rain", "Heavy rain at times", "Heavy rain", "Light rain shower", "Moderate or heavy rain shower", "Torrential rain shower", "Patchy light rain with thunder", "Moderate or heavy rain with thunder",
+          //Includes "mist", "patchy rain", "fog", "light drizzle", "light rain", "moderate rain", "heavy rain", "rain shower",
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/clover-rain.png?raw=true';
+        
+        // Snowy conditions  
+        } else if (currentWeather.includes("snow") || currentWeather.includes("blizzard") ||  currentWeather.includes("ice pellets") || currentWeather.includes("snow showers")) {
+          // "Patchy snow possible",  "Blowing snow", "Blizzard",  "Patchy light snow", "Light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Ice pellets", "Light snow showers", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets", "Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Moderate or heavy snow showers",
+          // INCLUDES: "snow", "blizzard", "ice pellets", "snow showers", 
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/clover-snow.png?raw=true';
+        } else {
+          myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/clover-nothing.png?raw=true';
+        }
+  } 
+  
+  
   block.appendChild(myImage);
   const backgroundImg = new Image(100, 100);
-  backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
+  //PROBLEM WHERE WITH BACKGROUND IMAGE
+  if (dayvalue == 1) {
+    backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
+  } else {
+    backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/night-background.png?raw=true';
+  }
+  
   block.appendChild(backgroundImg);
 }
 

@@ -121,7 +121,7 @@ function addBlock(name, block) {
   if (dayvalue == 1) {
     backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
   } else {
-    backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/night-background.png?raw=true';
+    backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/day-background.png?raw=true';
   }
 
   backgroundImg.classList.add("elementPosition");

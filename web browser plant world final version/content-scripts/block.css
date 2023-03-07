@@ -33,13 +33,13 @@
   /*position: relative;*/
   position: fixed;
   top: calc(99% - 150px);
-  left: 50px;
+  left: 40px;
 }
 
 .weathericonPosition {
   position: fixed;
   top: calc(99% - 150px);
-  left: 45px;
+  left: 35px;
   transform: scale(1.2);
 }
 
@@ -47,7 +47,7 @@
   /*position: relative;*/
   position: fixed;
   top: calc(99% - 100px);
-  left: 75px; /*80px;*/
+  left: 65px; /*80px;*/
 }
 
 

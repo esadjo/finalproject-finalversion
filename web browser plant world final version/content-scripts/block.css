@@ -2,19 +2,19 @@
 
 .blocker-block {
   /* Positioning for children */
-  /*display: flex;
-  flex-direction: column;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
   align-items: center;
   justify-content: center;
 
   /* Specify initial position and dimensions */
   position: fixed;
-  top: calc(99% - 150px); /*100% - 100px*/
+  top: calc(99% - 150px); 
   left: 50px;
   /*top: calc(50vh - 150px);
   left: calc(50vw - 150px);*/
-  height: 100px;
-  width: 100px;
+  height: 120px; /*100px;*/
+  width: 120px; /*100px;*/
 
   /* Set color to inherit from container */
   
@@ -24,8 +24,30 @@
   overflow: auto;*/
 }
 
+
 .blocker-block:hover * {
   display: block;
+}
+
+.elementPosition {
+  /*position: relative;*/
+  position: fixed;
+  top: calc(99% - 150px);
+  left: 50px;
+}
+
+.weathericonPosition {
+  position: fixed;
+  top: calc(99% - 150px);
+  left: 45px;
+  transform: scale(1.2);
+}
+
+.plantPosition {
+  /*position: relative;*/
+  position: fixed;
+  top: calc(99% - 100px);
+  left: 75px; /*80px;*/
 }
 
 

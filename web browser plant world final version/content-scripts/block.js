@@ -115,6 +115,20 @@ function addBlock(name, block) {
   // Add the block to the block container
   blockContainer.appendChild(block);
 
+
+  const backgroundImg = new Image(120, 125.74);
+  //PROBLEM WHERE WITH BACKGROUND IMAGE
+  if (dayvalue == 1) {
+    backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
+  } else {
+    backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/night-background.png?raw=true';
+  }
+
+  backgroundImg.classList.add("elementPosition");
+  block.appendChild(backgroundImg);
+  
+
+
   getWeatherIcon();
   console.log("here");
   console.log("This is icon rn:" + icon);
@@ -122,10 +136,11 @@ function addBlock(name, block) {
 
   //const weatherIconImg = new Image(50, 50);
   weatherIconImg.src = icon; // Hard coded -- 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
+  weatherIconImg.classList.add("weathericonPosition");
   block.appendChild(weatherIconImg);
   // Use Interactive Weather API Explorer to see what kind of calls and requests are possible - https://www.weatherapi.com/api-explorer.aspx
   
-  const myImage = new Image(50, 43.30);
+  const myImage = new Image(65, 56.1);
   // PROBLEM HERE FOR PLANT TYPE WEATHER CONDITION IMAGES
   if (name == "sprout") {
     // Reference includes - https://www.w3schools.com/jsref/jsref_includes.asp
@@ -223,17 +238,10 @@ function addBlock(name, block) {
         }
   } 
   
-  
+  myImage.classList.add("plantPosition");
   block.appendChild(myImage);
-  const backgroundImg = new Image(100, 100);
-  //PROBLEM WHERE WITH BACKGROUND IMAGE
-  if (dayvalue == 1) {
-    backgroundImg.src = 'https://github.com/esadjo/finalproject-prototype1/blob/main/web%20browser%20plant%20world/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
-  } else {
-    backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/night-background.png?raw=true';
-  }
-  
-  block.appendChild(backgroundImg);
+  //block.append(backgroundImg, weatherIconImg, myImage);
+
 }
 
 function deleteParent(e) {

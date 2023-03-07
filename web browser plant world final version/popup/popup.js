@@ -2,6 +2,11 @@ const locationInput = document.getElementById("locationtext");
 //updateLocation();
 const locationEntered = document.getElementById("locationBut"); 
 const locationDisplay = document.getElementById("locationUpfront");
+//if (locationDisplay.innerHTML == "undefined") {
+  //locationDisplay.innerHTML = 'No location added'; // QUESTION -- Why is this note working 
+//}
+
+
 let globalLocation = 'Seattle'; // or can leave empty
 console.log("Global location var:" + globalLocation);
 

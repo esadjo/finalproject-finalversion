@@ -10,6 +10,15 @@
   // - Background image also won’t update unless change the plant type (doesn’t change automatically) -- Does change if click enter twice 
   // Both plant image and background image update properly if submit location 2 times!!! What does this mean?
 
+
+  const ultimateBlock = document.createElement("div");
+
+  // Create a block container div and append it to the document
+  const blockContainer = document.createElement("div");
+  blockContainer.classList.add("blockContainer");
+  document.body.appendChild(blockContainer);
+
+
 let showBlocks = true;
 let icon; // = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
@@ -18,22 +27,73 @@ let count = 0;
 let locationf; //'Los Angeles';
 let dayvalue = 1;
 let dispType;
-let type;
 
-let weatherIconImg = new Image(50, 50);
-let backgroundImg = new Image(120, 125.74);
-let myImage = new Image(65, 56.1);
 
-//getWeatherIcon();
 
 
 console.log("locationf outside of message:" + locationf);
 
 //let locationf;
-/*
-chrome.storage.sync.get("locationSaved", (items) => {
-  locationf = items.locationSaved; // comment out TO GET IT BACK TO BEING STATIC -- QUESTION OF HOW TO WRITE CODE THAT ENTER ON POPUP LISTEN EVENT TRIGGERS RUNNING GETTING WEATHER ICON AGAIN (MAY NEED TO SAVE AND COMPARE PREVIOUS VERSIONS OF THE LOCATION AND RUN IF NOT THE SAME -- MIGHT BE A SIMPLER WAY)
-});*/
+
+// seeing what stored -- chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf});
+
+chrome.storage.sync.get("locationFin", (items) => {
+  locationf = items.locationFin; 
+  console.log("HERE HERE HERE IN SYNC GET LOCATION");
+  console.log("What is locationf right now?: " + locationf); // Correct value
+});
+
+chrome.storage.sync.get("block", (items) => {
+  showBlocks = items.block;
+  console.log("HERE HERE HERE IN SYNC GET BLOCK");
+  console.log("What is BLOCK right now?: " + showBlocks);
+});
+
+
+// Get the rules key from Chrome storage, and assign its value to our rules
+// object
+
+// NOTE TO SELF -- TEST TO SEE IF THIS CODE IS NECESSARY
+chrome.storage.sync.get("plant", (items) => {
+  type = items.plant;
+  dispTyp = type;
+  console.log("HERE HERE HERE IN SYNC GET PLANT");
+  console.log("What is PLANT dispType right now?: " + type);
+
+});
+
+
+let weatherIconImg = new Image(50, 50);
+let backgroundImg = new Image(120, 125.74);
+let myImage = new Image(65, 56.1);
+
+chrome.storage.sync.get("addBl", (items) => {
+  stateA = items.addBl;
+  console.log("HERE HERE HERE IN SYNC ADDBL adding block");
+  console.log("What is ADDBL right now?: " + stateA); /// RESOLVE FROM HERE -- WHY IS STATEA NOT UPDATING TO SHOW TRUE WHEN TOGGLED ON!!!!!!!
+
+  if (stateA) {
+    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
+    while (ultimateBlock.hasChildNodes()) { 
+      ultimateBlock.removeChild(ultimateBlock.firstChild);
+    } 
+    getWeatherIcon();
+    addBlock(ultimateBlock);
+  }
+  //getWeatherIcon();
+  //addBlock(ultimateBlock);
+  renderBlocks();
+});
+
+
+
+//getWeatherIcon();
+
+  //console.log("Why is plant image (what is dispType): " + dispType);
+  //getWeatherIcon();
+  //addBlock(ultimateBlock);
+ // renderBlocks();
+
 
 //console.log("locationf outside of message:" + locationf);
 
@@ -50,10 +110,7 @@ chrome.storage.sync.get("locationSaved", (items) => {
   const intervalID = setInterval(getWeatherIcon, 900000); //60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
 // Question of how make sure it's called more requently than set interval once accepting user input of the location (will need to update more frequently than every 10-15 minutes)
 
-// Create a block container div and append it to the document
-const blockContainer = document.createElement("div");
-blockContainer.classList.add("blockContainer");
-document.body.appendChild(blockContainer);
+
 
 // Based on https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
 function clear(element) {
@@ -217,7 +274,7 @@ function getWeatherIcon() {
 
 
 
-function addBlock(name, block) {
+function addBlock(block) {
 
   // Create a div for the block
   // block.remove();
@@ -255,9 +312,6 @@ function deleteParent(e) {
   e.target.parentNode.remove();
 }
 
-chrome.storage.sync.get("check", (items) => {
-  showBlocks = items.check;
-});
 
 
 function renderBlocks() {
@@ -268,26 +322,9 @@ function renderBlocks() {
   }
 }
 
-const ultimateBlock = document.createElement("div");
 
 
 
-
-
-
-// Get the rules key from Chrome storage, and assign its value to our rules
-// object
-
-// NOTE TO SELF -- TEST TO SEE IF THIS CODE IS NECESSARY
-chrome.storage.sync.get("plants", (items) => {
-  type = items.plants;
-  //addBlock(type, ultimateBlock);
-  //addBlock(dispType, ultimateBlock);
-  //renderBlocks();
-});
-  console.log("Why is plant image (what is dispType): " + dispType);
-  addBlock(dispType, ultimateBlock);
-  renderBlocks();
 
 
 
@@ -299,16 +336,23 @@ chrome.runtime.onMessage.addListener((request) => {
   showBlocks = request["enable"];
   dispType = request["type"];
   locationf = request['location2'];
+  addingB = request["addBlock"];
   console.log("locationf in message:" + locationf);
+  // Saving multiple at a time reference -- https://stackoverflow.com/questions/31126156/chrome-extensions-saving-multiple-ids-into-chrome-storage 
+  
+  chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf, addBl: addingB});
+
+
+  
 
   //locationf = ultLocation; // Maybe????
-  if (request["addBlock"]) {
+  if (addingB) {
     // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
     while (ultimateBlock.hasChildNodes()) { 
       ultimateBlock.removeChild(ultimateBlock.firstChild);
     } 
     getWeatherIcon();
-    addBlock(dispType, ultimateBlock);
+    addBlock(ultimateBlock);
   }
   renderBlocks();
 });

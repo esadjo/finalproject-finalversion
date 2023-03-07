@@ -46,7 +46,7 @@ button {
   border: none;
   border-radius: 10px;
   color: white;
-  padding: 15px;
+  padding: 14px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -153,8 +153,8 @@ input:checked + .slider:before {
 
 input {
   width: 60%;
-  padding: 12px 8px;
-  margin: 8px 0;
+  padding: 12px 6px;
+  margin: 0px;
   box-sizing: border-box;
   border: 2px solid #777777;
   background-color: #f8f8f8;

@@ -2,6 +2,7 @@ const locationInput = document.getElementById("locationtext");
 //updateLocation();
 const locationEntered = document.getElementById("locationBut"); 
 const locationDisplay = document.getElementById("locationUpfront");
+let globalPlant; 
 //if (locationDisplay.innerHTML == "undefined") {
   //locationDisplay.innerHTML = 'No location added'; // QUESTION -- Why is this note working 
 //}
@@ -23,22 +24,25 @@ chrome.storage.sync.get("locationSaved", (items) => {
   console.log(locationDisplay);
 }); 
 
+chrome.storage.sync.get("plants", (items) => {
+  console.log("in chrome storaget get plants");
+  type = items.plants;
+  updateButton(type);
+  globalPlant = type;
+  //updateContentScript(checkbox.checked, type); // NOTE TO SELF HERE ---  ADDED TO SEE IF IT WILL HELP THE MESSAGE TO RUN WITHOUT AN EVENT LISTENER THE FIRST 
+}); 
+
 chrome.storage.sync.get("check", (items) => {
   console.log("in chrome storage get check");
   showBlocks = items.check;
   checkbox.checked = showBlocks;
   console.log("Forcing toggle state to update: " + showBlocks);
   if (showBlocks == false) {
-    updateContentScript(false, "no");
+    updateContentScript(false, globalPlant);
   }
 });
 
-chrome.storage.sync.get("plants", (items) => {
-  console.log("in chrome storaget get plants");
-  type = items.plants;
-  updateButton(type);
-  //updateContentScript(checkbox.checked, type); // NOTE TO SELF HERE ---  ADDED TO SEE IF IT WILL HELP THE MESSAGE TO RUN WITHOUT AN EVENT LISTENER THE FIRST 
-}); 
+
 
 
 
@@ -62,7 +66,7 @@ function checkState() {
     checkbox.checked = showBlocks;
     console.log("Forcing toggle state to update: " + showBlocks);
     if (showBlocks == false) {
-      updateContentScript(false, "no");
+      updateContentScript(false, globalPlant);
     }
   });
   
@@ -78,7 +82,7 @@ function checkState() {
 checkbox.addEventListener("change", (e) => {
   console.log('event listener to changes in toggle');
   saveCheck(checkbox.checked);
-  updateContentScript(false, "no");
+  updateContentScript(false, globalPlant);
 });
 //addBlockButton.addEventListener("click", (e) => updateContentScript(true));
 

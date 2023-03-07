@@ -10,7 +10,7 @@
   /* Specify initial position and dimensions */
   position: fixed;
   top: calc(99% - 150px); 
-  left: 50px;
+  left: 30px; /*50px;*/
   /*top: calc(50vh - 150px);
   left: calc(50vw - 150px);*/
   height: 120px; /*100px;*/

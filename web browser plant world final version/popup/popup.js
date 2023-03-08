@@ -59,7 +59,7 @@ locationEntered.addEventListener("click", (e) => {
   if (locationInput.value != "") { // SO that when the text input is empty, it won't update the location
     SaveUpdateLocation(locationInput);
   }
- // checkState();
+
   chrome.storage.sync.get("plants", (items) => {
     type = items.plants;
     updateContentScript(checkbox.checked, type); // instead make a object with all three data points 
@@ -67,25 +67,6 @@ locationEntered.addEventListener("click", (e) => {
 });
 
 
-
-
-function checkState() {
-  chrome.storage.sync.get("check", (items) => {
-    console.log('in checkState');
-    showBlocks = items.check;
-    checkbox.checked = showBlocks;
-    console.log("Forcing toggle state to update: " + showBlocks);
-    if (showBlocks == false) {
-      updateContentScript(false, globalPlant);
-    }
-  });
-  
-  chrome.storage.sync.get("plants", (items) => {
-    console.log("in sync get plants");
-    type = items.plants;
-    updateButton(type);
-  }); 
-}
 
 
 // Add event listeners to the checkbox and button

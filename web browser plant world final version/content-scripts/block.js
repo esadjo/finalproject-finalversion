@@ -295,10 +295,6 @@ function addBlock(block) {
   block.appendChild(backgroundImg);
   
 
-
-  //getWeatherIcon();
-  console.log("here");
-  console.log("This is icon rn:" + icon);
   
 
   //const weatherIconImg = new Image(50, 50);

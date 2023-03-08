@@ -19,7 +19,13 @@ console.log("Checkbox status before: " + checkbox.checked);
 chrome.storage.sync.get("locationSaved", (items) => {
   console.log("in chrome.storage.sync.get locationSaved");
   loct = items.locationSaved;
-  locationDisplay.innerHTML = loct;
+  console.log(loct);
+  if (loct == undefined) {
+    locationDisplay.innerHTML = "No location"; // So that shows "No location  instead of undefined"
+  } else {
+    locationDisplay.innerHTML = loct;
+  }
+
   globalLocation = loct;
   console.log(locationDisplay);
 }); 
@@ -50,7 +56,9 @@ chrome.storage.sync.get("check", (items) => {
 
 locationEntered.addEventListener("click", (e) => {
   console.log("in event listener for clicking the button to enter location");
-  SaveUpdateLocation(locationInput);
+  if (locationInput.value != "") { // SO that when the text input is empty, it won't update the location
+    SaveUpdateLocation(locationInput);
+  }
  // checkState();
   chrome.storage.sync.get("plants", (items) => {
     type = items.plants;
@@ -99,17 +107,20 @@ const addHerb = document.getElementById("herb");
 const addClover = document.getElementById("clover");
 
 addSprout.addEventListener("click", (e) => {
-  updateContentScript(true, "sprout"); 
+  globalPlant = "sprout";
+  updateContentScript(true, globalPlant); 
   saveRule("sprout");
 }); 
 
 addHerb.addEventListener("click", (e) => {
-  updateContentScript(true, "herb");
+  globalPlant = "herb";
+  updateContentScript(true, globalPlant);
   saveRule("herb");
 }); 
 
 addClover.addEventListener("click", (e) => {
-  updateContentScript(true, "clover"); 
+  globalPlant = "clover";
+  updateContentScript(true, globalPlant); 
   saveRule("clover");
 }); 
 
@@ -123,24 +134,15 @@ function SaveUpdateLocation(loc) {
   console.log('where is this?');
   console.log("Location inputted: " + loc.value);
   chrome.storage.sync.set({ locationSaved: loc.value });
+
   locationDisplay.innerHTML = loc.value;
+  
   globalLocation  = loc.value; // QUESTIon -- shoudl update location be moved?
   console.log("Global location var: " + globalLocation);
   // [TO DO] -- ADD CODE SO THAT THE LOCATION IS UPDATED ON THE POPUP SCREEN
 }
 
-function updateLocation() {
-  chrome.storage.sync.get("locationSaved", (items) => {
-    locationInputted = items.locationSaved;
-    // Reference - https://www.w3schools.com/js/js_htmldom_html.asp
-    if (locationInputted = 'undefined') {
-      locationDisplay.innerHTML = "No location added";
-    } else {
-      locationDisplay.innerHTML = locationInputted.value;
-      globalLocation  = locationInputted.value;
-    }
-  });
-}
+
 
 function updateButton(type) {
   if (type == "sprout") {

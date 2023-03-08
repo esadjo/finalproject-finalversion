@@ -4,7 +4,7 @@ body {
   width: max-content;
   margin: 0;
   font-family: 'Rubik', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   user-select: none;
 }
 
@@ -33,7 +33,7 @@ h3 {
 }
 
 .checkbox-container input[type="checkbox"] {
-  margin-left: 1rem;
+  margin-left: 1.1rem;
 }
 
 .popup-content {
@@ -159,7 +159,7 @@ input {
   border: 2px solid #777777;
   background-color: #f8f8f8;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: 'Rubik', sans-serif;
 }
 

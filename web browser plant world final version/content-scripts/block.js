@@ -1,15 +1,4 @@
-// LIST OF ERRORS TO RESOLVE:
-  // Not updating plant image to proper condition when change location (only when change type of plant in popup)
-  //Plant image and world image not showing up when move to a different tab OR when refresh page
-  // - WEIRD - plant image changes when hit enter button twice (seems like remembering past selection for too long — something about timing not lining up
-  // Error getting is: 
-      // Error handling response: TypeError: Cannot read properties of undefined (reading 'includes')
-      // at addBlock (chrome-extension://hgmlainahkjaohebembopmgblgdbkacg/content-scripts/block.js:189:28)
-      //at chrome-extension://hgmlainahkjaohebembopmgblgdbkacg/content-scripts/block.js:251:3
-
-  // - Background image also won’t update unless change the plant type (doesn’t change automatically) -- Does change if click enter twice 
-  // Both plant image and background image update properly if submit location 2 times!!! What does this mean?
-
+// Last to do -- Change the dimensions of the plant images in content scripts and popup and update the images themselves (and their css positioning in block.css) so that the circle selector on the popup is a circle (make the width and height of the image the same)
 
   const ultimateBlock = document.createElement("div");
 

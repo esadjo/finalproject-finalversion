@@ -43,11 +43,6 @@ chrome.storage.sync.get("locationFin", (items) => {
   console.log("What is locationf right now?: " + locationf); // Correct value
 });
 
-chrome.storage.sync.get("block", (items) => {
-  showBlocks = items.block;
-  console.log("HERE HERE HERE IN SYNC GET BLOCK");
-  console.log("What is BLOCK right now?: " + showBlocks);
-});
 
 
 // Get the rules key from Chrome storage, and assign its value to our rules
@@ -56,10 +51,31 @@ chrome.storage.sync.get("block", (items) => {
 // NOTE TO SELF -- TEST TO SEE IF THIS CODE IS NECESSARY
 chrome.storage.sync.get("plant", (items) => {
   type = items.plant;
-  dispTyp = type;
+  dispType = type;
   console.log("HERE HERE HERE IN SYNC GET PLANT");
-  console.log("What is PLANT dispType right now?: " + type);
+  console.log("What is PLANT dispType right now?: " + dispType);
 
+});
+
+chrome.storage.sync.get("block", (items) => {
+  showBlocks = items.block;
+  console.log("HERE HERE HERE IN SYNC GET BLOCK");
+  console.log("What is BLOCK right now?: " + showBlocks);
+  if (showBlocks) {
+    console.log("TOP!!!!");
+    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
+    while (ultimateBlock.hasChildNodes()) { 
+      ultimateBlock.removeChild(ultimateBlock.firstChild);
+    } 
+    console.log("I'm reaching this point in the if statement");
+    getWeatherIcon();
+    console.log("Looks like getWeatherIcon going through");
+    addBlock(ultimateBlock);
+  }
+  console.log("IOUTSIDE");
+  //getWeatherIcon();
+  //addBlock(ultimateBlock);
+  renderBlocks();
 });
 
 
@@ -72,17 +88,7 @@ chrome.storage.sync.get("addBl", (items) => {
   console.log("HERE HERE HERE IN SYNC ADDBL adding block");
   console.log("What is ADDBL right now?: " + stateA); /// RESOLVE FROM HERE -- WHY IS STATEA NOT UPDATING TO SHOW TRUE WHEN TOGGLED ON!!!!!!!
 
-  if (stateA) {
-    // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
-    while (ultimateBlock.hasChildNodes()) { 
-      ultimateBlock.removeChild(ultimateBlock.firstChild);
-    } 
-    getWeatherIcon();
-    addBlock(ultimateBlock);
-  }
-  //getWeatherIcon();
-  //addBlock(ultimateBlock);
-  renderBlocks();
+
 });
 
 
@@ -159,7 +165,7 @@ function getWeatherIcon() {
       backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/night-background.png?raw=true';
     }
 
-    
+    console.log("INSIDE GETWEATHERICON -- Is it knowing what dispType is?: " + dispType);
     // PROBLEM HERE FOR PLANT TYPE WEATHER CONDITION IMAGES
     if (dispType == "sprout") {
       // Reference includes - https://www.w3schools.com/jsref/jsref_includes.asp
@@ -188,7 +194,7 @@ function getWeatherIcon() {
       } else if (currentWeather.includes("snow") || currentWeather.includes("blizzard") ||  currentWeather.includes("ice pellets") || currentWeather.includes("snow showers")) {
         // "Patchy snow possible",  "Blowing snow", "Blizzard",  "Patchy light snow", "Light snow", "Patchy moderate snow", "Moderate snow", "Patchy heavy snow", "Heavy snow", "Ice pellets", "Light snow showers", "Light showers of ice pellets", "Moderate or heavy showers of ice pellets", "Patchy light snow with thunder", "Moderate or heavy snow with thunder", "Moderate or heavy snow showers",
         // INCLUDES: "snow", "blizzard", "ice pellets", "snow showers", 
-        myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-snow.png';
+        myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-snow.png?raw=true';
       } else {
         myImage.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/sprout-nothing.png?raw=true';
       }
@@ -346,7 +352,7 @@ chrome.runtime.onMessage.addListener((request) => {
   
 
   //locationf = ultLocation; // Maybe????
-  if (addingB) {
+  if (showBlocks) {
     // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
     while (ultimateBlock.hasChildNodes()) { 
       ultimateBlock.removeChild(ultimateBlock.firstChild);

@@ -39,6 +39,8 @@ chrome.storage.sync.get("check", (items) => {
   console.log("Forcing toggle state to update: " + showBlocks);
   if (showBlocks == false) {
     updateContentScript(false, globalPlant);
+  } else {
+    updateContentScript(true, globalPlant);
   }
 });
 

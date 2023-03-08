@@ -1,4 +1,6 @@
 // Last to do -- Change the dimensions of the plant images in content scripts and popup and update the images themselves (and their css positioning in block.css) so that the circle selector on the popup is a circle (make the width and height of the image the same)
+// Get rid of unused code on both content scripts and popup -- double check that isn't breaking anything when save 
+
 
   const ultimateBlock = document.createElement("div");
 

@@ -1,17 +1,21 @@
-const ultimateBlock = document.createElement("div");
+// Last to do -- Change the dimensions of the plant images in content scripts and popup and update the images themselves (and their css positioning in block.css) so that the circle selector on the popup is a circle (make the width and height of the image the same)
+// Get rid of unused code on both content scripts and popup -- double check that isn't breaking anything when save 
 
-// Create a block container div and append it to the document
-const blockContainer = document.createElement("div");
-blockContainer.classList.add("blockContainer");
-document.body.appendChild(blockContainer);
+
+  const ultimateBlock = document.createElement("div");
+
+  // Create a block container div and append it to the document
+  const blockContainer = document.createElement("div");
+  blockContainer.classList.add("blockContainer");
+  document.body.appendChild(blockContainer);
 
 
 let showBlocks = true;
-let icon;
+let icon; // = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
 let currentWeather;
 
 let count = 0;
-let locationf;
+let locationf; //'Los Angeles';
 let dayvalue = 1;
 let dispType;
 
@@ -20,6 +24,8 @@ let dispType;
 
 console.log("locationf outside of message:" + locationf);
 
+
+// seeing what stored -- chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf});
 
 chrome.storage.sync.get("locationFin", (items) => {
   locationf = items.locationFin; 
@@ -30,6 +36,9 @@ chrome.storage.sync.get("locationFin", (items) => {
 
 
 // Get the rules key from Chrome storage, and assign its value to our rules
+// object
+
+// NOTE TO SELF -- TEST TO SEE IF THIS CODE IS NECESSARY
 chrome.storage.sync.get("plant", (items) => {
   type = items.plant;
   dispType = type;
@@ -65,10 +74,14 @@ let myImage = new Image(65, 65); //new Image(65, 56.1);
 
 chrome.storage.sync.get("addBl", (items) => {
   stateA = items.addBl;
+  console.log("HERE HERE HERE IN SYNC ADDBL adding block");
+  console.log("What is ADDBL right now?: " + stateA);
+
+
 });
 
 
-  const intervalID = setInterval(getWeatherIcon, 900000); //60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
+  const intervalID = setInterval(getWeatherIcon, 900000); 
 
 
 // Based on https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
@@ -103,8 +116,8 @@ function getWeatherIcon() {
    dayvalue = weatherDetails['current']['is_day'];
 
     console.log('Day or night (1 = yes, 0 = no):' + dayvalue);
-
     
+
     if (dayvalue == 1) {
       backgroundImg.src = 'https://github.com/esadjo/finalproject-finalversion/blob/main/web%20browser%20plant%20world%20final%20version/images/day-background.png?raw=true'; //'/images/backgroundImg.png';
     } else {
@@ -112,7 +125,7 @@ function getWeatherIcon() {
     }
 
     console.log("INSIDE GETWEATHERICON -- Is it knowing what dispType is?: " + dispType);
-    
+
     if (dispType == "sprout") {
       // Reference includes - https://www.w3schools.com/jsref/jsref_includes.asp
       // Reference lowercase - https://www.w3schools.com/jsref/jsref_tolocalelowercase.asp 
@@ -146,8 +159,9 @@ function getWeatherIcon() {
       }
     
       
-    } else if (dispType == "herb") {
       
+    } else if (dispType == "herb") {
+     
           // Clear conditions
           if (currentWeather.includes("sunny") || currentWeather.includes("clear") || currentWeather.includes("cloudy") || currentWeather.includes("overcast") || currentWeather.includes("thundery outbreaks")) {
             console.log("in weather conditions clear herb");
@@ -177,6 +191,7 @@ function getWeatherIcon() {
           }
   
     } else if (dispType == "clover") {
+      
           // Clear conditions
           if (currentWeather.includes("sunny") || currentWeather.includes("clear") || currentWeather.includes("cloudy") || currentWeather.includes("overcast") || currentWeather.includes("thundery outbreaks")) {
             // "Sunny" , "Clear" , "Partly cloudy", "Cloudy", "Overcast", "Thundery outbreaks possible"
@@ -229,10 +244,10 @@ function addBlock(block) {
   block.appendChild(backgroundImg);
   
 
-  weatherIconImg.src = icon;
+  weatherIconImg.src = icon; 
   weatherIconImg.classList.add("weathericonPosition");
   block.appendChild(weatherIconImg);
-
+ 
   
   myImage.classList.add("plantPosition");
   block.appendChild(myImage);
@@ -273,6 +288,8 @@ chrome.runtime.onMessage.addListener((request) => {
   
   chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf, addBl: addingB});
 
+
+  
   if (showBlocks) {
     // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
     while (ultimateBlock.hasChildNodes()) { 

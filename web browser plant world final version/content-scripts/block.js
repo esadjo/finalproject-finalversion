@@ -11,11 +11,11 @@
 
 
 let showBlocks = true;
-let icon; // = 'https://cdn.weatherapi.com/weather/64x64/day/116.png'; // hard coded
+let icon;
 let currentWeather;
 
 let count = 0;
-let locationf; //'Los Angeles';
+let locationf;
 let dayvalue = 1;
 let dispType;
 
@@ -38,7 +38,6 @@ chrome.storage.sync.get("locationFin", (items) => {
 // Get the rules key from Chrome storage, and assign its value to our rules
 // object
 
-// NOTE TO SELF -- TEST TO SEE IF THIS CODE IS NECESSARY
 chrome.storage.sync.get("plant", (items) => {
   type = items.plant;
   dispType = type;
@@ -267,8 +266,6 @@ function renderBlocks() {
     blockContainer.classList.add("invisible");
   }
 }
-
-
 
 
 

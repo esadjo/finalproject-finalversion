@@ -24,7 +24,6 @@ let dispType;
 
 console.log("locationf outside of message:" + locationf);
 
-//let locationf;
 
 // seeing what stored -- chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf});
 
@@ -64,8 +63,7 @@ chrome.storage.sync.get("block", (items) => {
     addBlock(ultimateBlock);
   }
   console.log("IOUTSIDE");
-  //getWeatherIcon();
-  //addBlock(ultimateBlock);
+  
   renderBlocks();
 });
 
@@ -83,30 +81,7 @@ chrome.storage.sync.get("addBl", (items) => {
 });
 
 
-
-//getWeatherIcon();
-
-  //console.log("Why is plant image (what is dispType): " + dispType);
-  //getWeatherIcon();
-  //addBlock(ultimateBlock);
- // renderBlocks();
-
-
-//console.log("locationf outside of message:" + locationf);
-
-
-
-
-//getWeatherIcon(); // just once so will load properly when first open
-
-
-  //TESTING GETHWEATHERICON
-  // Temporarily removed the intervalID for automatically running getWeatherIcon because causes changing the plant type to not work -- QUESTION OF WHY??
-  //60000 for every minute // Change to 600000 for 10 minutes // Calling function every 1 minute (eventuall 30): https://developer.mozilla.org/en-US/docs/Web/API/setInterval
-    // Logical error resolve -- how to make sure that this function is only call every 15 minutes instead of restarting that timer each time a user changes the plant type and it restarts the page -- the way to go about this is to not call this function directly in the function that creates the block (will be called everytime the items update) (THIS STEP IS DONE!)
   const intervalID = setInterval(getWeatherIcon, 900000); //60000); //900000); // Set to update every 15 minutes based on how Weather API said updates data every 10-15 for realtime weather (https://www.weatherapi.com/pricing.aspx) -- don't want to call when it's not updated
-// Question of how make sure it's called more requently than set interval once accepting user input of the location (will need to update more frequently than every 10-15 minutes)
-
 
 
 // Based on https://www.geeksforgeeks.org/how-to-clear-the-content-of-a-div-using-javascript/
@@ -117,12 +92,6 @@ function clear(element) {
   }
 }
 
-// TO DO - Figure out how to get location to update and rerun call to API to updat weather icon (for next prototype) - a new function might not be necessary
-//function updateLocation() {
-//  chrome.storage.sync.get("locationSaved", (items) => {
- //   locationf = items.locationSaved;
-//  });
-//}
 
 // Reference for fetch - https://github.com/branchwelder/example-fetch/blob/main/index.js 
 function getWeatherIcon() { 
@@ -259,12 +228,6 @@ function getWeatherIcon() {
     console.log("Count: " + count);
   });
   console.log("At end of getWeatherIcon function");
- // console.log(response.value);
-  
-  // https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
-  // Then do something with the JSON data
-  //.then((data) => {
-   // let weather = data;
 }
 
 
@@ -273,8 +236,6 @@ function getWeatherIcon() {
 
 function addBlock(block) {
 
-  // Create a div for the block
-  // block.remove();
   block.classList.add("blocker-block");
 
   // Add the block to the block container
@@ -286,18 +247,13 @@ function addBlock(block) {
   block.appendChild(backgroundImg);
   
 
-  
-
-  //const weatherIconImg = new Image(50, 50);
   weatherIconImg.src = icon; // Hard coded -- 'https://cdn.weatherapi.com/weather/64x64/day/116.png';
   weatherIconImg.classList.add("weathericonPosition");
   block.appendChild(weatherIconImg);
-  // Use Interactive Weather API Explorer to see what kind of calls and requests are possible - https://www.weatherapi.com/api-explorer.aspx
-  
+
   
   myImage.classList.add("plantPosition");
   block.appendChild(myImage);
-  //block.append(backgroundImg, weatherIconImg, myImage);
 
 }
 
@@ -335,10 +291,6 @@ chrome.runtime.onMessage.addListener((request) => {
   
   chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf, addBl: addingB});
 
-
-  
-
-  //locationf = ultLocation; // Maybe????
   if (showBlocks) {
     // https://www.w3schools.com/jsref/met_node_removechild.asp (To remove other plants)
     while (ultimateBlock.hasChildNodes()) { 

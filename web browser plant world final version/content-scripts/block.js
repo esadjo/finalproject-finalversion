@@ -21,8 +21,6 @@ let dispType;
 console.log("locationf outside of message:" + locationf);
 
 
-// seeing what stored -- chrome.storage.sync.set({block: showBlocks, plant: dispType, locationFin: locationf});
-
 chrome.storage.sync.get("locationFin", (items) => {
   locationf = items.locationFin; 
   console.log("HERE HERE HERE IN SYNC GET LOCATION");
@@ -32,7 +30,6 @@ chrome.storage.sync.get("locationFin", (items) => {
 
 
 // Get the rules key from Chrome storage, and assign its value to our rules
-
 chrome.storage.sync.get("plant", (items) => {
   type = items.plant;
   dispType = type;
@@ -68,10 +65,6 @@ let myImage = new Image(65, 65); //new Image(65, 56.1);
 
 chrome.storage.sync.get("addBl", (items) => {
   stateA = items.addBl;
-  console.log("HERE HERE HERE IN SYNC ADDBL adding block");
-  console.log("What is ADDBL right now?: " + stateA); /// RESOLVE FROM HERE -- WHY IS STATEA NOT UPDATING TO SHOW TRUE WHEN TOGGLED ON!!!!!!!
-
-
 });
 
 

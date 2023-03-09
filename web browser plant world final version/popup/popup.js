@@ -1,11 +1,7 @@
 const locationInput = document.getElementById("locationtext"); 
-//updateLocation();
 const locationEntered = document.getElementById("locationBut"); 
 const locationDisplay = document.getElementById("locationUpfront");
 let globalPlant; 
-//if (locationDisplay.innerHTML == "undefined") {
-  //locationDisplay.innerHTML = 'No location added'; // QUESTION -- Why is this note working 
-//}
 
 
 let globalLocation = 'Seattle'; // or can leave empty
@@ -35,7 +31,6 @@ chrome.storage.sync.get("plants", (items) => {
   type = items.plants;
   updateButton(type);
   globalPlant = type;
-  //updateContentScript(checkbox.checked, type); // NOTE TO SELF HERE ---  ADDED TO SEE IF IT WILL HELP THE MESSAGE TO RUN WITHOUT AN EVENT LISTENER THE FIRST 
 }); 
 
 chrome.storage.sync.get("check", (items) => {
@@ -75,7 +70,6 @@ checkbox.addEventListener("change", (e) => {
   saveCheck(checkbox.checked);
   updateContentScript(false, globalPlant);
 });
-//addBlockButton.addEventListener("click", (e) => updateContentScript(true));
 
 function updateButtonColor(sprout, herb, clover, v1, v2, v3) { // Updating button background colors of plants based on which one selected
   sprout.style.backgroundColor = v1;
@@ -118,9 +112,8 @@ function SaveUpdateLocation(loc) {
 
   locationDisplay.innerHTML = loc.value;
   
-  globalLocation  = loc.value; // QUESTIon -- shoudl update location be moved?
+  globalLocation  = loc.value; 
   console.log("Global location var: " + globalLocation);
-  // [TO DO] -- ADD CODE SO THAT THE LOCATION IS UPDATED ON THE POPUP SCREEN
 }
 
 
@@ -140,12 +133,10 @@ async function updateContentScript(addBlock, name) {
   // Sends a message to the content script with an object that has the
   // current value of the checkbox and a boolean (whether to add a block)
   updateButton(name);
-  //SaveUpdateLocation(locationInput);
-  //updateLocation();
 
   console.log("location display: " + globalLocation);
   
-  const message = { enable: checkbox.checked, addBlock: addBlock, type: name, location2: globalLocation}; //Testing: locate: locationDisplay.innerHTML
+  const message = { enable: checkbox.checked, addBlock: addBlock, type: name, location2: globalLocation};
   //console.log(message);
   const [tab] = await chrome.tabs.query({
     active: true,

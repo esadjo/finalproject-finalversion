@@ -72,7 +72,7 @@ chrome.storage.sync.get("block", (items) => {
 
 let weatherIconImg = new Image(50, 50);
 let backgroundImg = new Image(120, 125.74);
-let myImage = new Image(65, 56.1);
+let myImage = new Image(65, 65);
 
 chrome.storage.sync.get("addBl", (items) => {
   stateA = items.addBl;

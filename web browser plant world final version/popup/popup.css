@@ -1,32 +1,43 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 body {
   width: max-content;
   margin: 0;
-  font-family: 'Rubik', sans-serif;
-  font-size: 1.1rem;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
   user-select: none;
 }
 
 h2 {
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 1.4em;
 }
 
 h3 {
-  font-weight: 300;
+  font-weight: 400;
   color: #404040;
 }
 
+p {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
 .popup-title {
-  font-weight: 900;
+  font-family: 'Lato';
+  font-size: 1.28rem;
+  font-weight: 700;
   background-color: #005B90;
   color: rgb(255, 255, 255);
   width: 100%;
-  padding:6px;
+  padding:10px;
+  padding-left: 30px;
 }
 
 .checkbox-container {
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
   display: flex;
   align-items: center;
   margin-bottom: 0.2rem;
@@ -37,8 +48,11 @@ h3 {
 }
 
 .popup-content {
-  font-family: 'Rubik', sans-serif;
-  padding: 30px;
+  font-family: 'Space Mono', sans-serif;
+  padding-top: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 50px;
 }
 
 button {
@@ -46,7 +60,7 @@ button {
   border: none;
   border-radius: 10px;
   color: white;
-  padding: 14px;
+  padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -79,11 +93,11 @@ button:hover {
 
 
 .spacer {
-  margin: 50px 0px 50px 0px;
+  margin: 40px 0px 45px 0px;
 }
 
 .spacer-sml {
-  margin: 30px 0px 30px 0px;
+  margin: 70px 0px 30px 0px;
 }
 
 /* Code for slider based on w3school */ 
@@ -149,18 +163,22 @@ input:checked + .slider:before {
 
 input {
   width: 60%;
-  padding: 12px 6px;
+  padding: 12px 20px;
   margin: 0px;
+  margin-left: 0px; /*10px;*/
   box-sizing: border-box;
-  border: 2px solid #777777;
-  background-color: #f8f8f8;
+  border: 2px solid #c5c5c5;
+  background-color: #ffffff;
   border-radius: 10px;
   font-size: 1.1rem;
-  font-family: 'Rubik', sans-serif;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
 }
 
 input:focus {
-  border: 3px solid #005B90;
+  outline: none !important; /* Reference - https://stackoverflow.com/questions/16156594/how-to-change-border-color-of-textarea-on-focus */
+  border: 2px solid #005B90;
+  background-color: #ffffff;
 }
 
 

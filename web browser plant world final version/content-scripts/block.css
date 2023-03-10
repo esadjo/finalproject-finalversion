@@ -28,8 +28,20 @@
 .weathericonPosition {
   position: fixed;
   top: calc(99% - 150px);
-  left: 35px;
-  transform: scale(1.2);
+  left: 30px; /*35px*/
+  animation: sliding 8s linear infinite; /* Reference -- https://stackoverflow.com/questions/59300485/css-animation-moving-back-and-forth-with-rotation */
+}
+
+@keyframes sliding {
+  0% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
 }
 
 .plantPosition {
